@@ -71,7 +71,7 @@ class Validator
 
     public static function validateCvv($value)
     {
-        if (!is_string($value) || in_array(strlen($value), array(3, 4))) {
+        if (!is_string($value) || !in_array(strlen($value), array(3, 4))) {
             throw new ValidationException('Invalid Cvv', 'INVALID_CVV');
         }
     }
