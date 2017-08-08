@@ -1,0 +1,22 @@
+{
+  "name": "enesdayanc/vpos-est",
+  "type": "library",
+  "description": "asseco est virtual pos",
+  "homepage": "http://enesdayanc.com/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Enes Dayanç",
+      "homepage": "http://enesdayanc.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5",
+    "guzzlehttp/guzzle": "~6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "VPosEst\\": "src/"
+    }
+  }
+}
