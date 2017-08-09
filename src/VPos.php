@@ -26,6 +26,7 @@ class VPos
     public function __construct(Setting $setting)
     {
         $this->setting = $setting;
+        $this->setting->validate();
     }
 
     public function authorize(AuthorizeRequest $authorizeRequest)
