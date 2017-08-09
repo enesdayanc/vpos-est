@@ -33,7 +33,6 @@ class Card
      */
     public function setCreditCardNumber($creditCardNumber)
     {
-        Validator::validateCardNumber($creditCardNumber);
         $this->creditCardNumber = $creditCardNumber;
     }
 
@@ -50,7 +49,6 @@ class Card
      */
     public function setExpiryMonth($expiryMonth)
     {
-        Validator::validateExpiryMonth($expiryMonth);
         $this->expiryMonth = $expiryMonth;
     }
 
@@ -67,7 +65,6 @@ class Card
      */
     public function setExpiryYear($expiryYear)
     {
-        Validator::validateExpiryYear($expiryYear);
         $this->expiryYear = $expiryYear;
     }
 
@@ -84,7 +81,7 @@ class Card
      */
     public function setCvv($cvv)
     {
-        Validator::validateCvv($cvv);
+
         $this->cvv = $cvv;
     }
 
@@ -123,5 +120,13 @@ class Card
     public function getExpires()
     {
         return $this->getExpiryYear() . $this->getExpiryMonth();
+    }
+
+    public function validate()
+    {
+        Validator::validateCardNumber($this->getCreditCardNumber());
+        Validator::validateExpiryMonth($this->getExpiryMonth());
+        Validator::validateExpiryYear($this->getExpiryYear());
+        Validator::validateCvv($this->getCvv());
     }
 }
