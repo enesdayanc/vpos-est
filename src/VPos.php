@@ -6,6 +6,7 @@ use Exception;
 use GuzzleHttp\Client;
 use VPosEst\Constant\RedirectFormMethod;
 use VPosEst\Constant\StoreType;
+use VPosEst\Exception\CurlException;
 use VPosEst\Helper\Helper;
 use VPosEst\Model\Card;
 use VPosEst\Model\RedirectForm;
@@ -68,7 +69,7 @@ class VPos
                 ]
             ]);
         } catch (Exception $exception) {
-            throw new Exception('Guzzle Error');
+            throw new CurlException('Connection Error', $exception->getMessage());
         }
 
         return Helper::getResponseByXML($clientResponse->getBody()->getContents());
