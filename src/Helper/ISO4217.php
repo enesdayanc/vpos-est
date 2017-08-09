@@ -15,7 +15,7 @@ use VPosEst\Exception\ValidationException;
 use VPosEst\Model\ISO4217Country;
 use VPosEst\Model\ISO4217Currency;
 
-class ISO4217 extends \Alcohol\ISO4217
+class ISO4217
 {
     /**
      * @param string $alpha3
@@ -26,13 +26,13 @@ class ISO4217 extends \Alcohol\ISO4217
     public function getByAlpha3($alpha3)
     {
         try {
-            $resultArray = parent::getByAlpha3($alpha3);
+            $alcoholIso = new \Alcohol\ISO4217();
+            $resultArray = $alcoholIso->getByAlpha3($alpha3);
         } catch (\DomainException $exception) {
             throw new ValidationException($exception->getMessage(), 'INVALID_ALPHA3');
         } catch (\OutOfBoundsException $exception) {
             throw new NotFoundException($exception->getMessage(), 'ALPHA3_NOT_FOUND');
         }
-
 
         return $this->getObjectFromArray($resultArray);
     }
@@ -46,7 +46,8 @@ class ISO4217 extends \Alcohol\ISO4217
     public function getByCode($code)
     {
         try {
-            $resultArray = parent::getByCode($code);
+            $alcoholIso = new \Alcohol\ISO4217();
+            $resultArray = $alcoholIso->getByCode($code);
         } catch (\DomainException $exception) {
             throw new ValidationException($exception->getMessage(), 'INVALID_CODE');
         } catch (\OutOfBoundsException $exception) {
@@ -65,7 +66,8 @@ class ISO4217 extends \Alcohol\ISO4217
     public function getByNumeric($numeric)
     {
         try {
-            $resultArray = parent::getByNumeric($numeric);
+            $alcoholIso = new \Alcohol\ISO4217();
+            $resultArray = $alcoholIso->getByNumeric($numeric);
         } catch (\DomainException $exception) {
             throw new ValidationException($exception->getMessage(), 'INVALID_NUMERIC');
         } catch (\OutOfBoundsException $exception) {
@@ -80,7 +82,8 @@ class ISO4217 extends \Alcohol\ISO4217
      */
     public function getAll()
     {
-        $resultArrayList = parent::getAll();
+        $alcoholIso = new \Alcohol\ISO4217();
+        $resultArrayList = $alcoholIso->getAll();
 
         $result = array();
 
