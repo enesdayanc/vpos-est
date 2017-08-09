@@ -14,6 +14,7 @@ use VPosEst\Constant\Currency;
 use VPosEst\Constant\CurrencyCode;
 use VPosEst\Exception\ValidationException;
 use ReflectionClass;
+use VPosEst\Setting\Setting;
 
 class Helper
 {
@@ -50,5 +51,15 @@ class Helper
     {
         $oClass = new ReflectionClass ($class);
         return $oClass->getConstants();
+    }
+
+    public static function get3DHashString($clientId, $orderId, $amount, $threeDSuccessUrl, $threeDFailUrl, $type, $installment, $rnd, $storeKey)
+    {
+        return $clientId . $orderId . $amount . $threeDSuccessUrl . $threeDFailUrl . $type . $installment . $rnd . $storeKey;
+    }
+
+    public static function get3DCryptedHash($threeDHashString)
+    {
+        return base64_encode(pack('H*', sha1($threeDHashString)));
     }
 }

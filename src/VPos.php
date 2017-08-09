@@ -9,6 +9,7 @@ use VPosEst\Constant\StoreType;
 use VPosEst\Helper\Helper;
 use VPosEst\Model\Card;
 use VPosEst\Model\RedirectForm;
+use VPosEst\Model\ThreeDResponse;
 use VPosEst\Request\AuthorizeRequest;
 use VPosEst\Request\CaptureRequest;
 use VPosEst\Request\PurchaseRequest;
@@ -81,5 +82,10 @@ class VPos
     public function purchase3D(PurchaseRequest $purchaseRequest)
     {
         return new Response(null, $purchaseRequest->get3DRedirectForm($this->setting));
+    }
+
+    public function handle3DResponse(ThreeDResponse $threeDResponse)
+    {
+        return new Response($threeDResponse->getRawResponse($this->setting), new RedirectForm());
     }
 }

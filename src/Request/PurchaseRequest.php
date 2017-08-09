@@ -352,8 +352,18 @@ class PurchaseRequest implements RequestInterface
     {
         $credential = $setting->getCredential();
 
-        $hashstr = $credential->getClientId() . $this->getOrderId() . $this->getAmount() . $setting->getThreeDSuccessUrl() . $setting->getThreeDFailUrl() . $this->getType() . $this->getInstallment() . $rnd . $credential->getStoreKey();
+        $hashString = Helper::get3DHashString(
+            $credential->getClientId(),
+            $this->getOrderId(),
+            $this->getAmount(),
+            $setting->getThreeDSuccessUrl(),
+            $setting->getThreeDFailUrl(),
+            $this->getType(),
+            $this->getInstallment(),
+            $rnd,
+            $credential->getStoreKey()
+        );
 
-        return base64_encode(pack('H*', sha1($hashstr)));
+        return Helper::get3DCryptedHash($hashString);
     }
 }

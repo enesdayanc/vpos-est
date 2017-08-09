@@ -25,17 +25,24 @@ class Response
 
     public function __construct($rawResponse, RedirectForm $redirectForm)
     {
-        $this->rawResponse = $rawResponse;
         $this->redirectForm = $redirectForm;
 
-        if (!empty($rawResponse) && !is_array($rawResponse)) {
+        if (!empty($rawResponse) && is_string($rawResponse)) {
             try {
+                $this->rawResponse = $rawResponse;
                 $this->data = new SimpleXMLElement($rawResponse);
             } catch (\Exception $ex) {
                 throw new ValidationException('Invalid Response', 'INVALID_RESPONSE');
             }
         } else if (is_array($rawResponse)) {
+            $this->data = (object)$rawResponse;
+            $this->rawResponse = json_encode($rawResponse, true);
+        } else if (is_object($rawResponse)) {
             $this->data = $rawResponse;
+            $this->rawResponse = json_encode($rawResponse, true);
+        } else {
+            $this->data = $rawResponse;
+            $this->rawResponse = $rawResponse;
         }
     }
 
