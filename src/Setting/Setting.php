@@ -8,6 +8,8 @@
 
 namespace VPosEst\Setting;
 
+use VPosEst\Helper\Validator;
+
 abstract class Setting
 {
     /** @var  Credential $credential */
@@ -61,6 +63,20 @@ abstract class Setting
     public function setThreeDFailUrl($threeDFailUrl)
     {
         $this->threeDFailUrl = $threeDFailUrl;
+    }
+
+    public function validate()
+    {
+        Validator::validateNotEmpty('credential', $this->getCredential());
+        $this->getCredential()->validate();
+        Validator::validateNotEmpty('authorizeUrl', $this->getAuthorizeUrl());
+        Validator::validateNotEmpty('captureUrl', $this->getCaptureUrl());
+        Validator::validateNotEmpty('voidUrl', $this->getVoidUrl());
+        Validator::validateNotEmpty('refundUrl', $this->getRefundUrl());
+        Validator::validateNotEmpty('purchaseUrl', $this->getPurchaseUrl());
+        Validator::validateNotEmpty('threeDPostUrl', $this->getThreeDPostUrl());
+        Validator::validateNotEmpty('threeDFailUrl', $this->getThreeDFailUrl());
+        Validator::validateNotEmpty('threeDSuccessUrl', $this->getThreeDSuccessUrl());
     }
 
     public abstract function getThreeDPostUrl();

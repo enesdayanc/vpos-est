@@ -297,8 +297,8 @@ class PurchaseRequest implements RequestInterface
 
     public function validate()
     {
+        Validator::validateNotEmpty('card', $this->getCard());
         $this->getCard()->validate();
-
         Validator::validateIp($this->getIp());
         Validator::validateLanguage($this->getLanguage());
         Validator::validateEmail($this->getEmail());

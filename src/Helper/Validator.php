@@ -132,4 +132,11 @@ class Validator
             throw new ValidationException('Invalid Language', 'INVALID_LANGUAGE');
         }
     }
+
+    public static function validateNotEmpty($name, $value)
+    {
+        if (empty($value)) {
+            throw new ValidationException("Invalid $name", "INVALID_$name");
+        }
+    }
 }
