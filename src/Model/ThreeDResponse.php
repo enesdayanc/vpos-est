@@ -312,9 +312,9 @@ class ThreeDResponse
 
         $hashString .= $credential->getStoreKey();
 
-        $crypteHash = Helper::get3DCryptedHash($hashString);
+        $cryptedHash = Helper::get3DCryptedHash($hashString);
 
-        if ($crypteHash === $this->getHash() && ($hashString === $this->getHashParamsVal() . $credential->getStoreKey())) {
+        if ($cryptedHash === $this->getHash() && ($hashString === $this->getHashParamsVal() . $credential->getStoreKey())) {
             return true;
         }
 
