@@ -12,6 +12,7 @@ namespace VPosEst\Request;
 use VPosEst\Constant\RequestType;
 use VPosEst\Helper\Helper;
 use VPosEst\Helper\Validator;
+use VPosEst\Model\ISO4217Currency;
 use VPosEst\Setting\Credential;
 
 class CaptureRequest implements RequestInterface
@@ -20,6 +21,7 @@ class CaptureRequest implements RequestInterface
     private $mode;
     private $orderId;
     private $amount;
+    /** @var  ISO4217Currency $currency */
     private $currency;
 
 
@@ -88,7 +90,7 @@ class CaptureRequest implements RequestInterface
     }
 
     /**
-     * @return mixed
+     * @return ISO4217Currency
      */
     public function getCurrency()
     {
@@ -96,9 +98,9 @@ class CaptureRequest implements RequestInterface
     }
 
     /**
-     * @param mixed $currency
+     * @param ISO4217Currency $currency
      */
-    public function setCurrency($currency)
+    public function setCurrency(ISO4217Currency $currency)
     {
         $this->currency = $currency;
     }
@@ -115,7 +117,7 @@ class CaptureRequest implements RequestInterface
             "Mode" => $this->getMode(),
             "OrderId" => $this->getOrderId(),
             "Type" => $this->getType(),
-            "Currency" => $this->getCurrency(),
+            "Currency" => $this->getCurrency()->getNumeric(),
             "Total" => $this->getAmount(),
         );
 

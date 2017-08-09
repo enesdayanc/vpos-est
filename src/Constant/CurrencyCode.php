@@ -14,11 +14,4 @@ class CurrencyCode
     const USD = 840;
     const EUR = 978;
     const GBP = 826;
-
-    public static $toCurrency = array(
-        self::TL => Currency::TL,
-        self::USD => Currency::USD,
-        self::EUR => Currency::EUR,
-        self::GBP => Currency::GBP,
-    );
 }

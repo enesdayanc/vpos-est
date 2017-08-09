@@ -17,24 +17,6 @@ use ReflectionClass;
 
 class Helper
 {
-    public static function getCurrencyCodeByCurrency($currency)
-    {
-        if (!array_key_exists($currency, CurrencyCode::$toCurrency)) {
-            throw new ValidationException('Currency is not valid', 'CURRENCY_NOT_VALID');
-        }
-
-        return CurrencyCode::$toCurrency[$currency];
-    }
-
-    public static function getCurrencyByCurrencyCode($currencyCode)
-    {
-        if (!array_key_exists($currencyCode, Currency::$toCurrencyCode)) {
-            throw new ValidationException('Currency code is not valid', 'CURRENCY_CODE_NOT_VALID');
-        }
-
-        return Currency::$toCurrencyCode[$currencyCode];
-    }
-
     public static function getFormattedExpiryMonthYear($expiry)
     {
         if (empty($expiry)) {

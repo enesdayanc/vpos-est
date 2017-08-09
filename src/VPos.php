@@ -74,66 +74,11 @@ class VPos
 
     public function authorize3D(AuthorizeRequest $authorizeRequest)
     {
-        $orderId = $authorizeRequest->getOrderId();
-        $card = $authorizeRequest->getCard();
-        $installment = $authorizeRequest->getInstallment();
-        $language = $authorizeRequest->getLanguage();
-        $amount = $authorizeRequest->getAmount();
-        $currency = $authorizeRequest->getCurrency();
-
-        return $this->get3DForm($orderId, $installment, $amount, $card, "PreAuth", $language, $currency);
+        return new Response(null, $authorizeRequest->get3DRedirectForm($this->setting));
     }
 
     public function purchase3D(PurchaseRequest $purchaseRequest)
     {
-        $orderId = $purchaseRequest->getOrderId();
-        $card = $purchaseRequest->getCard();
-        $installment = $purchaseRequest->getInstallment();
-        $language = $purchaseRequest->getLanguage();
-        $amount = $purchaseRequest->getAmount();
-        $currency = $purchaseRequest->getCurrency();
-
-        return $this->get3DForm($orderId, $installment, $amount, $card, "Auth", $language, $currency);
-    }
-
-    private function get3DForm($orderId, $installment, $amount, Card $card, $type, $language, $currency)
-    {
-        $amount = Helper::getFormattedAmount($amount);
-        $currencyCode = Helper::getCurrencyCodeByCurrency($currency);
-
-        $rnd = md5(microtime());
-
-        $params = array(
-            'pan' => $card->getCreditCardNumber(),
-            'cv2' => $card->getCvv(),
-            'Ecom_Payment_Card_ExpDate_Year' => $card->getExpiryYear(),
-            'Ecom_Payment_Card_ExpDate_Month' => $card->getExpiryMonth(),
-            'clientid' => $this->setting->getCredential()->getClientId(),
-            'oid' => $orderId,
-            'okUrl' => $this->setting->getThreeDSuccessUrl(),
-            'failUrl' => $this->setting->getThreeDFailUrl(),
-            'rnd' => $rnd,
-            'islemtipi' => $type,
-            'taksit' => $installment,
-            'storetype' => StoreType::THREE_D_PAY,
-            'lang' => $language,
-            'hash' => $this->get3DHash($orderId, $amount, $type, $installment, $rnd),
-            'amount' => $amount,
-            'currency' => $currencyCode
-        );
-
-        $redirectForm = new RedirectForm();
-        $redirectForm->setAction($this->setting->getThreeDPostUrl());
-        $redirectForm->setMethod(RedirectFormMethod::POST);
-        $redirectForm->setParameters($params);
-
-        return new Response(null, $redirectForm);
-    }
-
-    private function get3DHash($orderId, $amount, $type, $installment, $rnd)
-    {
-        $hashstr = $this->setting->getCredential()->getClientId() . $orderId . $amount . $this->setting->getThreeDSuccessUrl() . $this->setting->getThreeDFailUrl() . $type . $installment . $rnd . $this->setting->getCredential()->getStoreKey();
-
-        return base64_encode(pack('H*', sha1($hashstr)));
+        return new Response(null, $purchaseRequest->get3DRedirectForm($this->setting));
     }
 }

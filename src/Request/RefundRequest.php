@@ -11,6 +11,7 @@ namespace VPosEst\Request;
 use VPosEst\Constant\RequestType;
 use VPosEst\Helper\Helper;
 use VPosEst\Helper\Validator;
+use VPosEst\Model\ISO4217Currency;
 use VPosEst\Setting\Credential;
 
 class RefundRequest implements RequestInterface
@@ -19,6 +20,7 @@ class RefundRequest implements RequestInterface
     private $mode;
     private $orderId;
     private $amount;
+    /** @var  ISO4217Currency $currency */
     private $currency;
 
 
@@ -84,7 +86,7 @@ class RefundRequest implements RequestInterface
     }
 
     /**
-     * @return mixed
+     * @return ISO4217Currency
      */
     public function getCurrency()
     {
@@ -92,9 +94,9 @@ class RefundRequest implements RequestInterface
     }
 
     /**
-     * @param mixed $currency
+     * @param ISO4217Currency $currency
      */
-    public function setCurrency($currency)
+    public function setCurrency(ISO4217Currency $currency)
     {
         $this->currency = $currency;
     }
@@ -110,7 +112,7 @@ class RefundRequest implements RequestInterface
             "Mode" => $this->getMode(),
             "OrderId" => $this->getOrderId(),
             "Type" => $this->getType(),
-            "Currency" => $this->getCurrency(),
+            "Currency" => $this->getCurrency()->getNumeric(),
             "Total" => $this->getAmount(),
         );
 

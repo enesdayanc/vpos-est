@@ -15,20 +15,20 @@ use VPosEst\Constant\Language;
 use VPosEst\Constant\RequestMode;
 use VPosEst\Exception\ValidationException;
 use ReflectionClass;
+use VPosEst\Model\ISO4217Currency;
 
 class Validator
 {
     public static function validateCurrency($value)
     {
-        if (!in_array($value, Helper::getConstants(Currency::class))) {
-            throw new ValidationException('Invalid Currency', 'INVALID_CURRENCY');
+        if (!$value instanceof ISO4217Currency) {
+            throw new ValidationException('Invalid Currency Type', 'INVALID_CURRENCY_TYPE');
         }
-    }
 
-    public static function validateCurrencyCode($value)
-    {
-        if (!in_array($value, Helper::getConstants(CurrencyCode::class))) {
-            throw new ValidationException('Invalid Currency Code', 'INVALID_CURRENCY_CODE');
+        $alpha3 = $value->getAlpha3();
+
+        if (!in_array($alpha3, Helper::getConstants(Currency::class))) {
+            throw new ValidationException('Invalid Currency', 'INVALID_CURRENCY');
         }
     }
 

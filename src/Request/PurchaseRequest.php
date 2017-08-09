@@ -8,17 +8,23 @@
 
 namespace VPosEst\Request;
 
+use VPosEst\Constant\RedirectFormMethod;
 use VPosEst\Constant\RequestType;
+use VPosEst\Constant\StoreType;
 use VPosEst\Helper\Helper;
 use VPosEst\Helper\Validator;
 use VPosEst\Model\Card;
+use VPosEst\Model\ISO4217Currency;
+use VPosEst\Model\RedirectForm;
 use VPosEst\Setting\Credential;
+use VPosEst\Setting\Setting;
 
 class PurchaseRequest implements RequestInterface
 {
     protected $type;
     private $mode;
     private $orderId;
+    /** @var  ISO4217Currency $currency */
     private $currency;
     private $groupId;
     private $transId;
@@ -83,7 +89,7 @@ class PurchaseRequest implements RequestInterface
     }
 
     /**
-     * @return mixed
+     * @return ISO4217Currency
      */
     public function getCurrency()
     {
@@ -91,9 +97,9 @@ class PurchaseRequest implements RequestInterface
     }
 
     /**
-     * @param mixed $currency
+     * @param ISO4217Currency $currency
      */
-    public function setCurrency($currency)
+    public function setCurrency(ISO4217Currency $currency)
     {
         $this->currency = $currency;
     }
@@ -272,7 +278,7 @@ class PurchaseRequest implements RequestInterface
             "Mode" => $this->getMode(),
             "OrderId" => $this->getOrderId(),
             "Type" => $this->getType(),
-            "Currency" => $this->getCurrency(),
+            "Currency" => $this->getCurrency()->getNumeric(),
             "GroupId" => $this->getGroupId(),
             "TransId" => $this->getTransId(),
             "UserId" => $this->getUserId(),
@@ -302,5 +308,50 @@ class PurchaseRequest implements RequestInterface
         Validator::validateCurrency($this->getCurrency());
         Validator::validateOrderId($this->getOrderId());
         Validator::validateRequestMode($this->getMode());
+    }
+
+    public function get3DRedirectForm(Setting $setting)
+    {
+        $this->validate();
+
+        $rnd = md5(microtime());
+
+        $card = $this->getCard();
+        $credential = $setting->getCredential();
+
+        $params = array(
+            'pan' => $card->getCreditCardNumber(),
+            'cv2' => $card->getCvv(),
+            'Ecom_Payment_Card_ExpDate_Year' => $card->getExpiryYear(),
+            'Ecom_Payment_Card_ExpDate_Month' => $card->getExpiryMonth(),
+            'clientid' => $credential->getClientId(),
+            'oid' => $this->getOrderId(),
+            'okUrl' => $setting->getThreeDSuccessUrl(),
+            'failUrl' => $setting->getThreeDFailUrl(),
+            'rnd' => $rnd,
+            'islemtipi' => $this->getType(),
+            'taksit' => $this->getInstallment(),
+            'storetype' => StoreType::THREE_D_PAY,
+            'lang' => $this->getLanguage(),
+            'hash' => $this->get3DHash($rnd, $setting),
+            'amount' => $this->getAmount(),
+            'currency' => $this->getCurrency()->getNumeric()
+        );
+
+        $redirectForm = new RedirectForm();
+        $redirectForm->setAction($setting->getThreeDPostUrl());
+        $redirectForm->setMethod(RedirectFormMethod::POST);
+        $redirectForm->setParameters($params);
+
+        return $redirectForm;
+    }
+
+    private function get3DHash($rnd, Setting $setting)
+    {
+        $credential = $setting->getCredential();
+
+        $hashstr = $credential->getClientId() . $this->getOrderId() . $this->getAmount() . $setting->getThreeDSuccessUrl() . $setting->getThreeDFailUrl() . $this->getType() . $this->getInstallment() . $rnd . $credential->getStoreKey();
+
+        return base64_encode(pack('H*', sha1($hashstr)));
     }
 }
