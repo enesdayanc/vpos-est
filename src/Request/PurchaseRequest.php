@@ -267,9 +267,11 @@ class PurchaseRequest implements RequestInterface
 
     public function toXmlString(Credential $credential)
     {
+        $this->validate();
+
         $card = $this->getCard();
 
-        $expires = $card->getExpiryMonth() . $card->getExpiryYear();
+        $card->validate();
 
         $elements = array(
             "Name" => $credential->getUsername(),
@@ -285,7 +287,7 @@ class PurchaseRequest implements RequestInterface
             "Extra" => $this->getExtra(),
             "Taksit" => $this->getInstallment(),
             "Number" => $card->getCreditCardNumber(),
-            "Expires" => $expires,
+            "Expires" => $card->getExpires(),
             "Cvv2Val" => $card->getCvv(),
             "Total" => $this->getAmount(),
             "Email" => $this->getEmail(),
