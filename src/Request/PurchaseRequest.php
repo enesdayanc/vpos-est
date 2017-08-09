@@ -271,8 +271,6 @@ class PurchaseRequest implements RequestInterface
 
         $card = $this->getCard();
 
-        $card->validate();
-
         $elements = array(
             "Name" => $credential->getUsername(),
             "Password" => $credential->getPassword(),
