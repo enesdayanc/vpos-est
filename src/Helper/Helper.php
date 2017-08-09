@@ -9,11 +9,14 @@
 namespace VPosEst\Helper;
 
 
+use Exception;
+use SimpleXMLElement;
 use VPosEst\Constant;
 use VPosEst\Constant\Currency;
-use VPosEst\Constant\CurrencyCode;
+use VPosEst\Constant\Success;
 use VPosEst\Exception\ValidationException;
 use ReflectionClass;
+use VPosEst\Response\Response;
 use VPosEst\Setting\Setting;
 
 class Helper
@@ -61,5 +64,41 @@ class Helper
     public static function get3DCryptedHash($threeDHashString)
     {
         return base64_encode(pack('H*', sha1($threeDHashString)));
+    }
+
+    public static function getResponseByXML($xml)
+    {
+        $response = new Response();
+
+        $response->setRawData($xml);
+
+        try {
+            $data = new SimpleXMLElement($xml);
+        } catch (Exception $exception) {
+            throw new ValidationException('Invalid Xml Response', 'INVALID_XML_RESPONSE');
+        }
+
+        if ((!empty($data->ProcReturnCode) && (string)$data->ProcReturnCode === Success::PROC_RETURN_CODE)
+            || (!empty($data->Response) && $data->Response === Success::RESPONSE)) {
+            $response->setIsSuccessFul(true);
+        }
+
+        if (!empty($data->AuthCode)) {
+            $response->setCode($data->AuthCode);
+        }
+
+        if (!empty($data->Extra->ERRORCODE)) {
+            $response->setErrorCode($data->Extra->ERRORCODE);
+        }
+
+        if (!empty($data->ErrMsg)) {
+            $response->setErrorMessage($data->ErrMsg);
+        }
+
+        if (!empty($data->TransId)) {
+            $response->setTransactionReference($data->TransId);
+        }
+
+        return $response;
     }
 }

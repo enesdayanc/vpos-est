@@ -10,7 +10,6 @@ namespace VPosEst\Helper;
 
 
 use VPosEst\Constant\Currency;
-use VPosEst\Constant\CurrencyCode;
 use VPosEst\Constant\Language;
 use VPosEst\Constant\RequestMode;
 use VPosEst\Exception\ValidationException;

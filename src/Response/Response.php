@@ -2,118 +2,183 @@
 /**
  * Created by PhpStorm.
  * User: enesdayanc
- * Date: 03/08/2017
- * Time: 11:00
+ * Date: 09/08/2017
+ * Time: 14:57
  */
 
 namespace VPosEst\Response;
 
-use VPosEst\Exception\ValidationException;
-use VPosEst\Model\RedirectForm;
-use SimpleXMLElement;
 
 class Response
 {
+    private $isSuccessFul = false;
+    private $code;
+    private $errorCode;
+    private $errorMessage;
+    private $transactionReference;
+    private $isRedirect = false;
+    private $redirectUrl;
+    private $redirectMethod;
+    private $redirectData;
+    private $rawData;
 
-    const SUCCESS_PROC_RETURN_CODE = '00';
-    const SUCCESS_RESPONSE = 'Approved';
-
-    protected $data;
-    protected $rawResponse;
-    /** @var RedirectForm $redirectForm */
-    private $redirectForm;
-
-    public function __construct($rawResponse, RedirectForm $redirectForm)
+    /**
+     * @return bool
+     */
+    public function isSuccessFul()
     {
-        $this->redirectForm = $redirectForm;
-
-        if (!empty($rawResponse) && is_string($rawResponse)) {
-            try {
-                $this->rawResponse = $rawResponse;
-                $this->data = new SimpleXMLElement($rawResponse);
-            } catch (\Exception $ex) {
-                throw new ValidationException('Invalid Response', 'INVALID_RESPONSE');
-            }
-        } else if (is_array($rawResponse)) {
-            $this->data = (object)$rawResponse;
-            $this->rawResponse = json_encode($rawResponse, true);
-        } else if (is_object($rawResponse)) {
-            $this->data = $rawResponse;
-            $this->rawResponse = json_encode($rawResponse, true);
-        } else {
-            $this->data = $rawResponse;
-            $this->rawResponse = $rawResponse;
-        }
+        return $this->isSuccessFul;
     }
 
-    public function getRawResponse()
+    /**
+     * @param bool $isSuccessFul
+     */
+    public function setIsSuccessFul($isSuccessFul)
     {
-        return $this->rawResponse;
+        $this->isSuccessFul = $isSuccessFul;
     }
 
-    public function isSuccessful()
-    {
-        if (
-            (!empty($this->data->ProcReturnCode) && (string)$this->data->ProcReturnCode === self::SUCCESS_PROC_RETURN_CODE)
-            || (!empty($this->data->Response) && $this->data->Response === self::SUCCESS_RESPONSE)
-        ) {
-            return true;
-        }
-        return false;
-    }
-
+    /**
+     * @return mixed
+     */
     public function getCode()
     {
-        if (!empty($this->data->AuthCode)) {
-            return $this->data->AuthCode;
-        }
-        return null;
+        return $this->code;
     }
 
+    /**
+     * @param mixed $code
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getErrorCode()
     {
-        if (!empty($this->data->Extra->ERRORCODE)) {
-            return $this->data->Extra->ERRORCODE;
-        }
-        return null;
+        return $this->errorCode;
     }
 
+    /**
+     * @param mixed $errorCode
+     */
+    public function setErrorCode($errorCode)
+    {
+        $this->errorCode = $errorCode;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getErrorMessage()
     {
-        if (!empty($this->data->ErrMsg)) {
-            return $this->data->ErrMsg;
-        }
-        return null;
+        return $this->errorMessage;
     }
 
+    /**
+     * @param mixed $errorMessage
+     */
+    public function setErrorMessage($errorMessage)
+    {
+        $this->errorMessage = $errorMessage;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getTransactionReference()
     {
-        if (!empty($this->data->TransId)) {
-            return $this->data->TransId;
-        }
-        return null;
+        return $this->transactionReference;
     }
 
+    /**
+     * @param mixed $transactionReference
+     */
+    public function setTransactionReference($transactionReference)
+    {
+        $this->transactionReference = $transactionReference;
+    }
+
+    /**
+     * @return bool
+     */
     public function isRedirect()
     {
-        if (!empty($this->redirectForm->getAction())) {
-            return true;
-        }
-        return false;
+        return $this->isRedirect;
     }
 
+    /**
+     * @param bool $isRedirect
+     */
+    public function setIsRedirect($isRedirect)
+    {
+        $this->isRedirect = $isRedirect;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getRedirectUrl()
     {
-        return $this->redirectForm->getAction();
+        return $this->redirectUrl;
     }
 
+    /**
+     * @param mixed $redirectUrl
+     */
+    public function setRedirectUrl($redirectUrl)
+    {
+        $this->redirectUrl = $redirectUrl;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getRedirectMethod()
     {
-        return $this->redirectForm->getMethod();
+        return $this->redirectMethod;
     }
 
+    /**
+     * @param mixed $redirectMethod
+     */
+    public function setRedirectMethod($redirectMethod)
+    {
+        $this->redirectMethod = $redirectMethod;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getRedirectData()
     {
-        return $this->redirectForm->getParameters();
+        return $this->redirectData;
+    }
+
+    /**
+     * @param mixed $redirectData
+     */
+    public function setRedirectData($redirectData)
+    {
+        $this->redirectData = $redirectData;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRawData()
+    {
+        return $this->rawData;
+    }
+
+    /**
+     * @param mixed $rawData
+     */
+    public function setRawData($rawData)
+    {
+        $this->rawData = $rawData;
     }
 }

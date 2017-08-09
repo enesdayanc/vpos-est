@@ -71,21 +71,40 @@ class VPos
             throw new Exception('Guzzle Error');
         }
 
-        return new Response($clientResponse->getBody()->getContents(), new RedirectForm());
+        return Helper::getResponseByXML($clientResponse->getBody()->getContents());
     }
 
     public function authorize3D(AuthorizeRequest $authorizeRequest)
     {
-        return new Response(null, $authorizeRequest->get3DRedirectForm($this->setting));
+
+        $redirectForm = $authorizeRequest->get3DRedirectForm($this->setting);
+
+        $response = new Response();
+
+        $response->setIsRedirect(true);
+        $response->setRedirectMethod($redirectForm->getMethod());
+        $response->setRedirectUrl($redirectForm->getAction());
+        $response->setRedirectData($redirectForm->getParameters());
+
+        return $response;
     }
 
     public function purchase3D(PurchaseRequest $purchaseRequest)
     {
-        return new Response(null, $purchaseRequest->get3DRedirectForm($this->setting));
+        $redirectForm = $purchaseRequest->get3DRedirectForm($this->setting);
+
+        $response = new Response();
+
+        $response->setIsRedirect(true);
+        $response->setRedirectMethod($redirectForm->getMethod());
+        $response->setRedirectUrl($redirectForm->getAction());
+        $response->setRedirectData($redirectForm->getParameters());
+
+        return $response;
     }
 
     public function handle3DResponse(ThreeDResponse $threeDResponse)
     {
-        return new Response($threeDResponse->getRawResponse($this->setting), new RedirectForm());
+        return $threeDResponse->getResponseClass($this->setting);
     }
 }

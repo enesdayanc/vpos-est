@@ -9,6 +9,8 @@
 namespace VPosEst\Model;
 
 
+use VPosEst\Constant\MdStatus;
+use VPosEst\Constant\Success;
 use VPosEst\Helper\Helper;
 use VPosEst\Response\Response;
 use VPosEst\Setting\Credential;
@@ -17,10 +19,10 @@ use VPosEst\Setting\Setting;
 class ThreeDResponse
 {
     private $allowedMdStatus = array(
-        1,
-        2,
-        3,
-        4,
+        MdStatus::ONE,
+        MdStatus::TWO,
+        MdStatus::THREE,
+        MdStatus::FOUR,
     );
 
     private $clientId;
@@ -265,35 +267,32 @@ class ThreeDResponse
 
     /**
      * @param Setting $setting
-     * @return array
+     * @return Response
      */
-    public function getRawResponse(Setting $setting)
+    public function getResponseClass(Setting $setting)
     {
         $setting->validate();
 
         $validSignature = $this->isValidSignature($setting);
 
-        $rawResponse = array();
+        $responseClass = new Response();
+
+        $responseClass->setCode($this->getAuthCode());
+        $responseClass->setTransactionReference($this->getTransId());
 
         if ($validSignature) {
 
-            if (in_array($this->getMdStatus(), $this->allowedMdStatus)) {
-                $rawResponse['ProcReturnCode'] = $this->getProcReturnCode();
-                $rawResponse['Response'] = $this->getResponse();
-            } else {
-                $rawResponse['ProcReturnCode'] = '99';
-                $rawResponse['Response'] = 'InvalidMdStatus';
+            if (
+                in_array($this->getMdStatus(), $this->allowedMdStatus)
+                && ($this->getProcReturnCode() === Success::PROC_RETURN_CODE || $this->getResponse() === Success::RESPONSE)
+            ) {
+                $responseClass->setIsSuccessFul(true);
             }
-            $rawResponse['AuthCode'] = $this->getAuthCode();
-            $rawResponse['TransId'] = $this->getTransId();
         } else {
-            $rawResponse['ErrMsg'] = 'Invalid Signature';
-            $rawResponse['Extra'] = array(
-                'ERRORCODE' => 99,
-            );
+            $responseClass->setErrorMessage('Invalid Signature');
         }
 
-        return $rawResponse;
+        return $responseClass;
     }
 
 
