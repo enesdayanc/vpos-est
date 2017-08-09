@@ -84,19 +84,19 @@ class Helper
         }
 
         if (!empty($data->AuthCode)) {
-            $response->setCode($data->AuthCode);
+            $response->setCode((string)$data->AuthCode);
         }
 
         if (!empty($data->Extra->ERRORCODE)) {
-            $response->setErrorCode($data->Extra->ERRORCODE);
+            $response->setErrorCode((string)$data->Extra->ERRORCODE);
         }
 
         if (!empty($data->ErrMsg)) {
-            $response->setErrorMessage($data->ErrMsg);
+            $response->setErrorMessage((string)$data->ErrMsg);
         }
 
         if (!empty($data->TransId)) {
-            $response->setTransactionReference($data->TransId);
+            $response->setTransactionReference((string)$data->TransId);
         }
 
         return $response;

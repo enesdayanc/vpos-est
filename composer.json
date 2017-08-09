@@ -15,9 +15,15 @@
     "guzzlehttp/guzzle": "~6.0",
     "alcohol/iso4217": "^3.1"
   },
+  "require-dev": {
+    "phpunit/phpunit": "^5.0"
+  },
   "autoload": {
     "psr-4": {
       "VPosEst\\": "src/"
-    }
+    },
+    "exclude-from-classmap": [
+      "tests/"
+    ]
   }
 }
