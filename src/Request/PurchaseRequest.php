@@ -314,10 +314,12 @@ class PurchaseRequest implements RequestInterface
     {
         $this->validate();
 
-        $rnd = md5(microtime());
-
-        $card = $this->getCard();
         $credential = $setting->getCredential();
+
+        Validator::validateNotEmpty('storeKey', $credential->getStoreKey());
+
+        $rnd = md5(microtime());
+        $card = $this->getCard();
 
         $params = array(
             'pan' => $card->getCreditCardNumber(),

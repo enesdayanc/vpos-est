@@ -73,10 +73,13 @@ abstract class Setting
         Validator::validateNotEmpty('captureUrl', $this->getCaptureUrl());
         Validator::validateNotEmpty('voidUrl', $this->getVoidUrl());
         Validator::validateNotEmpty('refundUrl', $this->getRefundUrl());
-        Validator::validateNotEmpty('purchaseUrl', $this->getPurchaseUrl());
-        Validator::validateNotEmpty('threeDPostUrl', $this->getThreeDPostUrl());
-        Validator::validateNotEmpty('threeDFailUrl', $this->getThreeDFailUrl());
-        Validator::validateNotEmpty('threeDSuccessUrl', $this->getThreeDSuccessUrl());
+
+        if (!empty($this->getCredential()->getStoreKey())) {
+            Validator::validateNotEmpty('purchaseUrl', $this->getPurchaseUrl());
+            Validator::validateNotEmpty('threeDPostUrl', $this->getThreeDPostUrl());
+            Validator::validateNotEmpty('threeDFailUrl', $this->getThreeDFailUrl());
+            Validator::validateNotEmpty('threeDSuccessUrl', $this->getThreeDSuccessUrl());
+        }
     }
 
     public abstract function getThreeDPostUrl();

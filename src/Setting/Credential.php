@@ -87,6 +87,5 @@ class Credential
         Validator::validateNotEmpty('username', $this->getUsername());
         Validator::validateNotEmpty('password', $this->getPassword());
         Validator::validateNotEmpty('clientId', $this->getClientId());
-        Validator::validateNotEmpty('storeKey', $this->getStoreKey());
     }
 }
