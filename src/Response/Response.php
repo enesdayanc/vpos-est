@@ -47,8 +47,8 @@ class Response
     public function isSuccessful()
     {
         if (
-            (isset($this->data->ProcReturnCode) && (string)$this->data->ProcReturnCode === self::SUCCESS_PROC_RETURN_CODE)
-            || (isset($this->data->Response) && $this->data->Response === self::SUCCESS_RESPONSE)
+            (!empty($this->data->ProcReturnCode) && (string)$this->data->ProcReturnCode === self::SUCCESS_PROC_RETURN_CODE)
+            || (!empty($this->data->Response) && $this->data->Response === self::SUCCESS_RESPONSE)
         ) {
             return true;
         }
@@ -57,22 +57,34 @@ class Response
 
     public function getCode()
     {
-        return $this->data->AuthCode;
+        if (!empty($this->data->AuthCode)) {
+            return $this->data->AuthCode;
+        }
+        return null;
     }
 
     public function getErrorCode()
     {
-        return $this->data->Extra->ERRORCODE;
+        if (!empty($this->data->Extra->ERRORCODE)) {
+            return $this->data->Extra->ERRORCODE;
+        }
+        return null;
     }
 
     public function getErrorMessage()
     {
-        return $this->data->ErrMsg;
+        if (!empty($this->data->ErrMsg)) {
+            return $this->data->ErrMsg;
+        }
+        return null;
     }
 
     public function getTransactionReference()
     {
-        return $this->data->TransId;
+        if (!empty($this->data->TransId)) {
+            return $this->data->TransId;
+        }
+        return null;
     }
 
     public function isRedirect()
