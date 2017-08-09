@@ -48,7 +48,6 @@ class RefundRequest implements RequestInterface
      */
     public function setMode($mode)
     {
-        Validator::validateRequestMode($mode);
         $this->mode = $mode;
     }
 
@@ -65,7 +64,6 @@ class RefundRequest implements RequestInterface
      */
     public function setOrderId($orderId)
     {
-        Validator::validateOrderId($orderId);
         $this->orderId = $orderId;
     }
 
@@ -82,7 +80,6 @@ class RefundRequest implements RequestInterface
      */
     public function setAmount($amount)
     {
-        Validator::validateAmount($amount);
         $this->amount = $amount;
     }
 
@@ -99,12 +96,13 @@ class RefundRequest implements RequestInterface
      */
     public function setCurrency($currency)
     {
-        Validator::validateCurrency($currency);
         $this->currency = $currency;
     }
 
     public function toXmlString(Credential $credential)
     {
+        $this->validate();
+
         $elements = array(
             "Name" => $credential->getUsername(),
             "Password" => $credential->getPassword(),
@@ -117,5 +115,13 @@ class RefundRequest implements RequestInterface
         );
 
         return Helper::arrayToXmlString($elements);
+    }
+
+    public function validate()
+    {
+        Validator::validateRequestMode($this->getMode());
+        Validator::validateCurrency($this->getCurrency());
+        Validator::validateAmount($this->getAmount());
+        Validator::validateOrderId($this->getOrderId());
     }
 }

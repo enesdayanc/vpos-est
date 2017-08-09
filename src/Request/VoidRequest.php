@@ -47,7 +47,6 @@ class VoidRequest implements RequestInterface
      */
     public function setOrderId($orderId)
     {
-        Validator::validateOrderId($orderId);
         $this->orderId = $orderId;
     }
 
@@ -64,12 +63,13 @@ class VoidRequest implements RequestInterface
      */
     public function setMode($mode)
     {
-        Validator::validateRequestMode($mode);
         $this->mode = $mode;
     }
 
     public function toXmlString(Credential $credential)
     {
+        $this->validate();
+
         $elements = array(
             "Name" => $credential->getUsername(),
             "Password" => $credential->getPassword(),
@@ -80,5 +80,11 @@ class VoidRequest implements RequestInterface
         );
 
         return Helper::arrayToXmlString($elements);
+    }
+
+    public function validate()
+    {
+        Validator::validateRequestMode($this->getMode());
+        Validator::validateOrderId($this->getOrderId());
     }
 }

@@ -31,6 +31,13 @@ class CaptureRequest implements RequestInterface
         $this->type = RequestType::POST_AUTH;
     }
 
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 
     /**
      * @return mixed
@@ -45,7 +52,6 @@ class CaptureRequest implements RequestInterface
      */
     public function setMode($mode)
     {
-        Validator::validateRequestMode($mode);
         $this->mode = $mode;
     }
 
@@ -62,7 +68,6 @@ class CaptureRequest implements RequestInterface
      */
     public function setOrderId($orderId)
     {
-        Validator::validateOrderId($orderId);
         $this->orderId = $orderId;
     }
 
@@ -79,7 +84,6 @@ class CaptureRequest implements RequestInterface
      */
     public function setAmount($amount)
     {
-        Validator::validateAmount($amount);
         $this->amount = $amount;
     }
 
@@ -96,13 +100,14 @@ class CaptureRequest implements RequestInterface
      */
     public function setCurrency($currency)
     {
-        Validator::validateCurrency($currency);
         $this->currency = $currency;
     }
 
 
     public function toXmlString(Credential $credential)
     {
+        $this->validate();
+
         $elements = array(
             "Name" => $credential->getUsername(),
             "Password" => $credential->getPassword(),
@@ -115,5 +120,13 @@ class CaptureRequest implements RequestInterface
         );
 
         return Helper::arrayToXmlString($elements);
+    }
+
+    public function validate()
+    {
+        Validator::validateCurrency($this->getCurrency());
+        Validator::validateAmount($this->getAmount());
+        Validator::validateOrderId($this->getOrderId());
+        Validator::validateRequestMode($this->getMode());
     }
 }

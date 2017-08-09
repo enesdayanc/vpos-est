@@ -63,7 +63,6 @@ class PurchaseRequest implements RequestInterface
      */
     public function setMode($mode)
     {
-        Validator::validateRequestMode($mode);
         $this->mode = $mode;
     }
 
@@ -80,7 +79,6 @@ class PurchaseRequest implements RequestInterface
      */
     public function setOrderId($orderId)
     {
-        Validator::validateOrderId($orderId);
         $this->orderId = $orderId;
     }
 
@@ -97,7 +95,6 @@ class PurchaseRequest implements RequestInterface
      */
     public function setCurrency($currency)
     {
-        Validator::validateCurrency($currency);
         $this->currency = $currency;
     }
 
@@ -146,7 +143,6 @@ class PurchaseRequest implements RequestInterface
      */
     public function setUserId($userId)
     {
-        Validator::validateUserId($userId);
         $this->userId = $userId;
     }
 
@@ -179,7 +175,6 @@ class PurchaseRequest implements RequestInterface
      */
     public function setInstallment($installment)
     {
-        Validator::validateInstallment($installment);
         $this->installment = $installment;
     }
 
@@ -196,7 +191,6 @@ class PurchaseRequest implements RequestInterface
      */
     public function setAmount($amount)
     {
-        Validator::validateAmount($amount);
         $this->amount = $amount;
     }
 
@@ -230,7 +224,6 @@ class PurchaseRequest implements RequestInterface
      */
     public function setEmail($email)
     {
-        Validator::validateEmail($email);
         $this->email = $email;
     }
 
@@ -247,7 +240,6 @@ class PurchaseRequest implements RequestInterface
      */
     public function setIp($ip)
     {
-        Validator::validateIp($ip);
         $this->ip = $ip;
     }
 
@@ -264,7 +256,6 @@ class PurchaseRequest implements RequestInterface
      */
     public function setLanguage($language)
     {
-        Validator::validateLanguage($language);
         $this->language = $language;
     }
 
@@ -296,5 +287,18 @@ class PurchaseRequest implements RequestInterface
         );
 
         return Helper::arrayToXmlString($elements);
+    }
+
+    public function validate()
+    {
+        Validator::validateIp($this->getIp());
+        Validator::validateLanguage($this->getLanguage());
+        Validator::validateEmail($this->getEmail());
+        Validator::validateAmount($this->getAmount());
+        Validator::validateInstallment($this->getInstallment());
+        Validator::validateUserId($this->getUserId());
+        Validator::validateCurrency($this->getCurrency());
+        Validator::validateOrderId($this->getOrderId());
+        Validator::validateRequestMode($this->getMode());
     }
 }
