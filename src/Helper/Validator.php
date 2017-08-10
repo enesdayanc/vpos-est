@@ -103,7 +103,7 @@ class Validator
 
     public static function validateAmount($value)
     {
-        if (!is_numeric($value)) {
+        if (!is_numeric($value) || $value <= 0) {
             throw new ValidationException('Invalid Amount', 'INVALID_AMOUNT');
         }
     }
