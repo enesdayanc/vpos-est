@@ -8,10 +8,10 @@
 
 namespace Enesdayanc\VPosEst\Request;
 
+use Enesdayanc\Iso4217\Model\Currency;
 use Enesdayanc\VPosEst\Constant\RequestType;
 use Enesdayanc\VPosEst\Helper\Helper;
 use Enesdayanc\VPosEst\Helper\Validator;
-use Enesdayanc\VPosEst\Model\ISO4217Currency;
 use Enesdayanc\VPosEst\Setting\Credential;
 
 class RefundRequest implements RequestInterface
@@ -20,7 +20,7 @@ class RefundRequest implements RequestInterface
     private $mode;
     private $orderId;
     private $amount;
-    /** @var  ISO4217Currency $currency */
+    /** @var  Currency $currency */
     private $currency;
 
 
@@ -86,7 +86,7 @@ class RefundRequest implements RequestInterface
     }
 
     /**
-     * @return ISO4217Currency
+     * @return Currency
      */
     public function getCurrency()
     {
@@ -94,9 +94,9 @@ class RefundRequest implements RequestInterface
     }
 
     /**
-     * @param ISO4217Currency $currency
+     * @param Currency $currency
      */
-    public function setCurrency(ISO4217Currency $currency)
+    public function setCurrency(Currency $currency)
     {
         $this->currency = $currency;
     }

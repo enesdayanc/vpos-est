@@ -8,13 +8,12 @@
 
 namespace Enesdayanc\VPosEst;
 
+use Enesdayanc\Iso4217\Iso4217;
+use Enesdayanc\Iso4217\Model\Currency;
 use PHPUnit\Framework\TestCase;
-use Enesdayanc\VPosEst\Constant\Currency;
 use Enesdayanc\VPosEst\Constant\Language;
 use Enesdayanc\VPosEst\Constant\RequestMode;
-use Enesdayanc\VPosEst\Helper\ISO4217;
 use Enesdayanc\VPosEst\Model\Card;
-use Enesdayanc\VPosEst\Model\ISO4217Currency;
 use Enesdayanc\VPosEst\Request\AuthorizeRequest;
 use Enesdayanc\VPosEst\Request\CaptureRequest;
 use Enesdayanc\VPosEst\Request\PurchaseRequest;
@@ -27,7 +26,7 @@ class VposTest extends TestCase
     protected $vPos;
     /** @var  Card $card */
     protected $card;
-    /** @var  ISO4217Currency $currency */
+    /** @var  Currency $currency */
     protected $currency;
 
     protected $orderId;
@@ -56,9 +55,9 @@ class VposTest extends TestCase
 
         $this->card = $card;
 
-        $iso4217 = new ISO4217();
+        $iso4217 = new Iso4217();
 
-        $this->currency = $iso4217->getByAlpha3(Currency::TL);
+        $this->currency = $iso4217->getByCode('TRY');
 
         $this->amount = rand(1, 1000);
         $this->orderId = md5(microtime() . rand());
@@ -134,7 +133,10 @@ class VposTest extends TestCase
         $this->assertTrue($response->isSuccessFul());
         $this->assertFalse($response->isRedirect());
 
-        return $this->orderId;
+        return array(
+            'orderId' => $this->orderId,
+            'amount' => $this->amount,
+        );
     }
 
     public function testAuthorizeFail()
@@ -162,14 +164,14 @@ class VposTest extends TestCase
 
     /**
      * @depends testAuthorize
-     * @param $orderId
+     * @param $params
      */
-    public function testCapture($orderId)
+    public function testCapture($params)
     {
         $captureRequest = new CaptureRequest();
 
-        $captureRequest->setOrderId($orderId);
-        $captureRequest->setAmount($this->amount);
+        $captureRequest->setOrderId($params['orderId']);
+        $captureRequest->setAmount($params['amount']);
         $captureRequest->setCurrency($this->currency);
         $captureRequest->setMode(RequestMode::P);
 

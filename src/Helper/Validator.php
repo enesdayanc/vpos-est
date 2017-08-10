@@ -8,19 +8,16 @@
 
 namespace Enesdayanc\VPosEst\Helper;
 
-
 use Enesdayanc\VPosEst\Constant\Currency;
 use Enesdayanc\VPosEst\Constant\Language;
 use Enesdayanc\VPosEst\Constant\RequestMode;
 use Enesdayanc\VPosEst\Exception\ValidationException;
-use ReflectionClass;
-use Enesdayanc\VPosEst\Model\ISO4217Currency;
 
 class Validator
 {
     public static function validateCurrency($value)
     {
-        if (!$value instanceof ISO4217Currency) {
+        if (!$value instanceof \Enesdayanc\Iso4217\Model\Currency) {
             throw new ValidationException('Invalid Currency Type', 'INVALID_CURRENCY_TYPE');
         }
 

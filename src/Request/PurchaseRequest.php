@@ -8,13 +8,13 @@
 
 namespace Enesdayanc\VPosEst\Request;
 
+use Enesdayanc\Iso4217\Model\Currency;
 use Enesdayanc\VPosEst\Constant\RedirectFormMethod;
 use Enesdayanc\VPosEst\Constant\RequestType;
 use Enesdayanc\VPosEst\Constant\StoreType;
 use Enesdayanc\VPosEst\Helper\Helper;
 use Enesdayanc\VPosEst\Helper\Validator;
 use Enesdayanc\VPosEst\Model\Card;
-use Enesdayanc\VPosEst\Model\ISO4217Currency;
 use Enesdayanc\VPosEst\Model\RedirectForm;
 use Enesdayanc\VPosEst\Setting\Credential;
 use Enesdayanc\VPosEst\Setting\Setting;
@@ -24,7 +24,7 @@ class PurchaseRequest implements RequestInterface
     protected $type;
     private $mode;
     private $orderId;
-    /** @var  ISO4217Currency $currency */
+    /** @var  Currency $currency */
     private $currency;
     private $groupId;
     private $transId;
@@ -89,7 +89,7 @@ class PurchaseRequest implements RequestInterface
     }
 
     /**
-     * @return ISO4217Currency
+     * @return Currency
      */
     public function getCurrency()
     {
@@ -97,9 +97,9 @@ class PurchaseRequest implements RequestInterface
     }
 
     /**
-     * @param ISO4217Currency $currency
+     * @param Currency $currency
      */
-    public function setCurrency(ISO4217Currency $currency)
+    public function setCurrency(Currency $currency)
     {
         $this->currency = $currency;
     }
