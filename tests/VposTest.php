@@ -11,6 +11,7 @@ namespace Enesdayanc\VPosEst;
 use Enesdayanc\Iso4217\Iso4217;
 use Enesdayanc\Iso4217\Model\Currency;
 use Enesdayanc\VPosEst\Request\RefundRequest;
+use Enesdayanc\VPosEst\Request\VoidRequest;
 use PHPUnit\Framework\TestCase;
 use Enesdayanc\VPosEst\Constant\Language;
 use Enesdayanc\VPosEst\Constant\RequestMode;
@@ -223,11 +224,13 @@ class VposTest extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->isSuccessFul());
         $this->assertFalse($response->isRedirect());
+
+        return $params;
     }
 
 
     /**
-     * @depends testPurchase
+     * @depends testRefund
      * @param $params
      */
     public function testRefundFail($params)
@@ -244,6 +247,38 @@ class VposTest extends TestCase
         $this->assertFalse($response->isSuccessFul());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('CORE-2503', $response->getErrorCode());
+    }
+
+    /**
+     * @depends testPurchase
+     * @param $params
+     */
+    public function testVoid($params)
+    {
+        $voidRequest = new VoidRequest();
+        $voidRequest->setOrderId($params['orderId']);
+        $voidRequest->setMode(RequestMode::P);
+
+        $response = $this->vPos->void($voidRequest);
+
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertTrue($response->isSuccessFul());
+        $this->assertFalse($response->isRedirect());
+    }
+
+    public function testVoidFail()
+    {
+        $voidRequest = new VoidRequest();
+        $voidRequest->setOrderId(1);
+        $voidRequest->setMode(RequestMode::P);
+
+        $response = $this->vPos->void($voidRequest);
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertFalse($response->isSuccessFul());
+        $this->assertFalse($response->isRedirect());
+        $this->assertSame('CORE-2008', $response->getErrorCode());
     }
 
 }
