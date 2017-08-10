@@ -99,12 +99,15 @@ class VposTest extends TestCase
 
     public function testPurchaseFail()
     {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Invalid Amount');
+
         $purchaseRequest = new PurchaseRequest();
 
         $purchaseRequest->setCard($this->card);
         $purchaseRequest->setMode(RequestMode::P);
         $purchaseRequest->setOrderId($this->orderId);
-        $purchaseRequest->setAmount(1);
+        $purchaseRequest->setAmount(0);
         $purchaseRequest->setCurrency($this->currency);
         $purchaseRequest->setLanguage(Language::TR);
         $purchaseRequest->setUserId($this->userId);
@@ -112,12 +115,7 @@ class VposTest extends TestCase
         $purchaseRequest->setIp('198.168.1.1');
         $purchaseRequest->setEmail('enes.dayanc@modanisa.com.tr');
 
-        $response = $this->vPos->purchase($purchaseRequest);
-
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertFalse($response->isSuccessFul());
-        $this->assertFalse($response->isRedirect());
-        $this->assertSame('CORE-2507', $response->getErrorCode());
+        $this->vPos->purchase($purchaseRequest);
     }
 
     public function testAuthorize()
