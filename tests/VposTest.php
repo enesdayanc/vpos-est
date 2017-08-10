@@ -10,6 +10,7 @@ namespace Enesdayanc\VPosEst;
 
 use Enesdayanc\Iso4217\Iso4217;
 use Enesdayanc\Iso4217\Model\Currency;
+use Enesdayanc\VPosEst\Exception\ValidationException;
 use Enesdayanc\VPosEst\Request\RefundRequest;
 use Enesdayanc\VPosEst\Request\VoidRequest;
 use PHPUnit\Framework\TestCase;
@@ -103,7 +104,7 @@ class VposTest extends TestCase
         $purchaseRequest->setCard($this->card);
         $purchaseRequest->setMode(RequestMode::P);
         $purchaseRequest->setOrderId($this->orderId);
-        $purchaseRequest->setAmount(0);
+        $purchaseRequest->setAmount(1);
         $purchaseRequest->setCurrency($this->currency);
         $purchaseRequest->setLanguage(Language::TR);
         $purchaseRequest->setUserId($this->userId);
@@ -116,7 +117,7 @@ class VposTest extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertFalse($response->isSuccessFul());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('CORE-2009', $response->getErrorCode());
+        $this->assertSame('CORE-2507', $response->getErrorCode());
     }
 
     public function testAuthorize()
@@ -279,6 +280,96 @@ class VposTest extends TestCase
         $this->assertFalse($response->isSuccessFul());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('CORE-2008', $response->getErrorCode());
+    }
+
+    public function testPurchase3D()
+    {
+        $purchaseRequest = new PurchaseRequest();
+
+        $purchaseRequest->setCard($this->card);
+        $purchaseRequest->setMode(RequestMode::P);
+        $purchaseRequest->setOrderId($this->orderId);
+        $purchaseRequest->setAmount($this->amount);
+        $purchaseRequest->setCurrency($this->currency);
+        $purchaseRequest->setLanguage(Language::TR);
+        $purchaseRequest->setUserId($this->userId);
+        $purchaseRequest->setInstallment($this->installment);
+        $purchaseRequest->setIp('198.168.1.1');
+        $purchaseRequest->setEmail('enes.dayanc@modanisa.com.tr');
+
+        $response = $this->vPos->purchase3D($purchaseRequest);
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertFalse($response->isSuccessFul());
+        $this->assertTrue($response->isRedirect());
+        $this->assertInternalType('array', $response->getRedirectData());
+    }
+
+
+    public function testPurchase3DFail()
+    {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Invalid Amount');
+
+        $purchaseRequest = new PurchaseRequest();
+
+        $purchaseRequest->setCard($this->card);
+        $purchaseRequest->setMode(RequestMode::P);
+        $purchaseRequest->setOrderId($this->orderId);
+        $purchaseRequest->setAmount(0);
+        $purchaseRequest->setCurrency($this->currency);
+        $purchaseRequest->setLanguage(Language::TR);
+        $purchaseRequest->setUserId($this->userId);
+        $purchaseRequest->setInstallment($this->installment);
+        $purchaseRequest->setIp('198.168.1.1');
+        $purchaseRequest->setEmail('enes.dayanc@modanisa.com.tr');
+
+        $this->vPos->purchase3D($purchaseRequest);
+    }
+
+    public function testAuthorize3D()
+    {
+        $authorizeRequest = new AuthorizeRequest();
+
+        $authorizeRequest->setCard($this->card);
+        $authorizeRequest->setMode(RequestMode::P);
+        $authorizeRequest->setOrderId($this->orderId);
+        $authorizeRequest->setAmount($this->amount);
+        $authorizeRequest->setCurrency($this->currency);
+        $authorizeRequest->setLanguage(Language::TR);
+        $authorizeRequest->setUserId($this->userId);
+        $authorizeRequest->setInstallment($this->installment);
+        $authorizeRequest->setIp('198.168.1.1');
+        $authorizeRequest->setEmail('enes.dayanc@modanisa.com.tr');
+
+        $response = $this->vPos->authorize3D($authorizeRequest);
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertFalse($response->isSuccessFul());
+        $this->assertTrue($response->isRedirect());
+        $this->assertInternalType('array', $response->getRedirectData());
+    }
+
+    public function testAuthorize3DFail()
+    {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Invalid Amount');
+
+        $authorizeRequest = new AuthorizeRequest();
+
+        $authorizeRequest->setCard($this->card);
+        $authorizeRequest->setMode(RequestMode::P);
+        $authorizeRequest->setOrderId($this->orderId);
+        $authorizeRequest->setAmount(0);
+        $authorizeRequest->setCurrency($this->currency);
+        $authorizeRequest->setLanguage(Language::TR);
+        $authorizeRequest->setUserId($this->userId);
+        $authorizeRequest->setInstallment($this->installment);
+        $authorizeRequest->setIp('198.168.1.1');
+        $authorizeRequest->setEmail('enes.dayanc@modanisa.com.tr');
+
+        $this->vPos->authorize3D($authorizeRequest);
+
     }
 
 }
