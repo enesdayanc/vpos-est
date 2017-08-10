@@ -10,6 +10,7 @@ namespace Enesdayanc\VPosEst;
 
 use Enesdayanc\Iso4217\Iso4217;
 use Enesdayanc\Iso4217\Model\Currency;
+use Enesdayanc\VPosEst\Request\RefundRequest;
 use PHPUnit\Framework\TestCase;
 use Enesdayanc\VPosEst\Constant\Language;
 use Enesdayanc\VPosEst\Constant\RequestMode;
@@ -86,6 +87,11 @@ class VposTest extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->isSuccessFul());
         $this->assertFalse($response->isRedirect());
+
+        return array(
+            'orderId' => $this->orderId,
+            'amount' => $this->amount,
+        );
     }
 
 
@@ -95,8 +101,8 @@ class VposTest extends TestCase
 
         $purchaseRequest->setCard($this->card);
         $purchaseRequest->setMode(RequestMode::P);
-        $purchaseRequest->setOrderId(1);
-        $purchaseRequest->setAmount($this->amount);
+        $purchaseRequest->setOrderId($this->orderId);
+        $purchaseRequest->setAmount(0);
         $purchaseRequest->setCurrency($this->currency);
         $purchaseRequest->setLanguage(Language::TR);
         $purchaseRequest->setUserId($this->userId);
@@ -109,7 +115,7 @@ class VposTest extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertFalse($response->isSuccessFul());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('Bu siparis numarasi ile zaten basarili bir siparis var.', $response->getErrorMessage());
+        $this->assertSame('CORE-2009', $response->getErrorCode());
     }
 
     public function testAuthorize()
@@ -159,7 +165,7 @@ class VposTest extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertFalse($response->isSuccessFul());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('Bu siparis numarasi ile zaten basarili bir siparis var.', $response->getErrorMessage());
+        $this->assertSame('CORE-2507', $response->getErrorCode());
     }
 
     /**
@@ -196,7 +202,48 @@ class VposTest extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertFalse($response->isSuccessFul());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('PostAuth yapilamaz, uyusan PreAuth yok.', $response->getErrorMessage());
+        $this->assertSame('CORE-2509', $response->getErrorCode());
+    }
+
+
+    /**
+     * @depends testPurchase
+     * @param $params
+     */
+    public function testRefund($params)
+    {
+        $refundRequest = new RefundRequest();
+        $refundRequest->setMode(RequestMode::P);
+        $refundRequest->setCurrency($this->currency);
+        $refundRequest->setAmount($params['amount'] / 2);
+        $refundRequest->setOrderId($params['orderId']);
+
+        $response = $this->vPos->refund($refundRequest);
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertTrue($response->isSuccessFul());
+        $this->assertFalse($response->isRedirect());
+    }
+
+
+    /**
+     * @depends testPurchase
+     * @param $params
+     */
+    public function testRefundFail($params)
+    {
+        $refundRequest = new RefundRequest();
+        $refundRequest->setMode(RequestMode::P);
+        $refundRequest->setCurrency($this->currency);
+        $refundRequest->setAmount($params['amount'] + 10);
+        $refundRequest->setOrderId($params['orderId']);
+
+        $response = $this->vPos->refund($refundRequest);
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertFalse($response->isSuccessFul());
+        $this->assertFalse($response->isRedirect());
+        $this->assertSame('CORE-2503', $response->getErrorCode());
     }
 
 }
