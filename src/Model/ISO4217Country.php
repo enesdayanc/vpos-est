@@ -6,7 +6,7 @@
  * Time: 09:14
  */
 
-namespace VPosEst\Model;
+namespace Enesdayanc\VPosEst\Model;
 
 
 class ISO4217Country

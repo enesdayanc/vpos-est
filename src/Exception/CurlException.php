@@ -6,7 +6,7 @@
  * Time: 15:56
  */
 
-namespace VPosEst\Exception;
+namespace Enesdayanc\VPosEst\Exception;
 
 
 class CurlException extends BaseException

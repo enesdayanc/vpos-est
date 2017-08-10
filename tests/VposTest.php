@@ -6,20 +6,20 @@
  * Time: 16:36
  */
 
-namespace VPosEst;
+namespace Enesdayanc\VPosEst;
 
 use PHPUnit\Framework\TestCase;
-use VPosEst\Constant\Currency;
-use VPosEst\Constant\Language;
-use VPosEst\Constant\RequestMode;
-use VPosEst\Helper\ISO4217;
-use VPosEst\Model\Card;
-use VPosEst\Model\ISO4217Currency;
-use VPosEst\Request\AuthorizeRequest;
-use VPosEst\Request\CaptureRequest;
-use VPosEst\Request\PurchaseRequest;
-use VPosEst\Response\Response;
-use VPosEst\Setting\TurkiyeIsBankasiTest;
+use Enesdayanc\VPosEst\Constant\Currency;
+use Enesdayanc\VPosEst\Constant\Language;
+use Enesdayanc\VPosEst\Constant\RequestMode;
+use Enesdayanc\VPosEst\Helper\ISO4217;
+use Enesdayanc\VPosEst\Model\Card;
+use Enesdayanc\VPosEst\Model\ISO4217Currency;
+use Enesdayanc\VPosEst\Request\AuthorizeRequest;
+use Enesdayanc\VPosEst\Request\CaptureRequest;
+use Enesdayanc\VPosEst\Request\PurchaseRequest;
+use Enesdayanc\VPosEst\Response\Response;
+use Enesdayanc\VPosEst\Setting\TurkiyeIsBankasiTest;
 
 class VposTest extends TestCase
 {

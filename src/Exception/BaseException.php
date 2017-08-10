@@ -6,7 +6,7 @@
  * Time: 15:06
  */
 
-namespace VPosEst\Exception;
+namespace Enesdayanc\VPosEst\Exception;
 
 use Exception;
 use Throwable;

@@ -6,10 +6,10 @@
  * Time: 14:32
  */
 
-namespace VPosEst\Model;
+namespace Enesdayanc\VPosEst\Model;
 
 
-use VPosEst\Helper\Validator;
+use Enesdayanc\VPosEst\Helper\Validator;
 
 class Card
 {

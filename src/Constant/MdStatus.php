@@ -6,7 +6,7 @@
  * Time: 14:45
  */
 
-namespace VPosEst\Constant;
+namespace Enesdayanc\VPosEst\Constant;
 
 
 class MdStatus

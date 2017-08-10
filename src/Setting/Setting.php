@@ -6,9 +6,9 @@
  * Time: 14:29
  */
 
-namespace VPosEst\Setting;
+namespace Enesdayanc\VPosEst\Setting;
 
-use VPosEst\Helper\Validator;
+use Enesdayanc\VPosEst\Helper\Validator;
 
 abstract class Setting
 {

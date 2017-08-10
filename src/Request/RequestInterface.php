@@ -6,10 +6,10 @@
  * Time: 13:56
  */
 
-namespace VPosEst\Request;
+namespace Enesdayanc\VPosEst\Request;
 
 
-use VPosEst\Setting\Credential;
+use Enesdayanc\VPosEst\Setting\Credential;
 
 interface RequestInterface
 {

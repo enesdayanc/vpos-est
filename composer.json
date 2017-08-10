@@ -20,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "VPosEst\\": "src/"
+      "Enesdayanc\\VPosEst\\": "src/"
     },
     "exclude-from-classmap": [
       "tests/"

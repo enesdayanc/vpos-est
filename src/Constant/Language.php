@@ -6,7 +6,7 @@
  * Time: 16:29
  */
 
-namespace VPosEst\Constant;
+namespace Enesdayanc\VPosEst\Constant;
 
 class Language
 {

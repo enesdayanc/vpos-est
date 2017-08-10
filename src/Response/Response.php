@@ -6,7 +6,7 @@
  * Time: 14:57
  */
 
-namespace VPosEst\Response;
+namespace Enesdayanc\VPosEst\Response;
 
 
 class Response

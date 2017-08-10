@@ -6,14 +6,14 @@
  * Time: 10:03
  */
 
-namespace VPosEst\Request;
+namespace Enesdayanc\VPosEst\Request;
 
 
-use VPosEst\Constant\RequestType;
-use VPosEst\Helper\Helper;
-use VPosEst\Helper\Validator;
-use VPosEst\Model\ISO4217Currency;
-use VPosEst\Setting\Credential;
+use Enesdayanc\VPosEst\Constant\RequestType;
+use Enesdayanc\VPosEst\Helper\Helper;
+use Enesdayanc\VPosEst\Helper\Validator;
+use Enesdayanc\VPosEst\Model\ISO4217Currency;
+use Enesdayanc\VPosEst\Setting\Credential;
 
 class CaptureRequest implements RequestInterface
 {

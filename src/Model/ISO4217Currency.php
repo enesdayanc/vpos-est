@@ -6,7 +6,7 @@
  * Time: 09:12
  */
 
-namespace VPosEst\Model;
+namespace Enesdayanc\VPosEst\Model;
 
 
 class ISO4217Currency

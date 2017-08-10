@@ -6,15 +6,15 @@
  * Time: 11:53
  */
 
-namespace VPosEst\Model;
+namespace Enesdayanc\VPosEst\Model;
 
 
-use VPosEst\Constant\MdStatus;
-use VPosEst\Constant\Success;
-use VPosEst\Helper\Helper;
-use VPosEst\Response\Response;
-use VPosEst\Setting\Credential;
-use VPosEst\Setting\Setting;
+use Enesdayanc\VPosEst\Constant\MdStatus;
+use Enesdayanc\VPosEst\Constant\Success;
+use Enesdayanc\VPosEst\Helper\Helper;
+use Enesdayanc\VPosEst\Response\Response;
+use Enesdayanc\VPosEst\Setting\Credential;
+use Enesdayanc\VPosEst\Setting\Setting;
 
 class ThreeDResponse
 {

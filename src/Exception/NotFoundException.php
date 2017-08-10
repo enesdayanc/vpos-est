@@ -6,7 +6,7 @@
  * Time: 15:08
  */
 
-namespace VPosEst\Exception;
+namespace Enesdayanc\VPosEst\Exception;
 
 class NotFoundException extends BaseException
 {

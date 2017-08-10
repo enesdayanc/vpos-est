@@ -1,6 +1,6 @@
 <?php
 
-namespace VPosEst\Exception;
+namespace Enesdayanc\VPosEst\Exception;
 
 class ValidationException extends BaseException
 {

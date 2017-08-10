@@ -1,6 +1,6 @@
 <?php
 
-namespace VPosEst\Helper;
+namespace Enesdayanc\VPosEst\Helper;
 
 
 use DOMDocument;

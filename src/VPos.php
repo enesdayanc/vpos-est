@@ -1,24 +1,24 @@
 <?php
 
-namespace VPosEst;
+namespace Enesdayanc\VPosEst;
 
 use Exception;
 use GuzzleHttp\Client;
-use VPosEst\Constant\RedirectFormMethod;
-use VPosEst\Constant\StoreType;
-use VPosEst\Exception\CurlException;
-use VPosEst\Helper\Helper;
-use VPosEst\Model\Card;
-use VPosEst\Model\RedirectForm;
-use VPosEst\Model\ThreeDResponse;
-use VPosEst\Request\AuthorizeRequest;
-use VPosEst\Request\CaptureRequest;
-use VPosEst\Request\PurchaseRequest;
-use VPosEst\Request\RefundRequest;
-use VPosEst\Request\RequestInterface;
-use VPosEst\Request\VoidRequest;
-use VPosEst\Response\Response;
-use VPosEst\Setting\Setting;
+use Enesdayanc\VPosEst\Constant\RedirectFormMethod;
+use Enesdayanc\VPosEst\Constant\StoreType;
+use Enesdayanc\VPosEst\Exception\CurlException;
+use Enesdayanc\VPosEst\Helper\Helper;
+use Enesdayanc\VPosEst\Model\Card;
+use Enesdayanc\VPosEst\Model\RedirectForm;
+use Enesdayanc\VPosEst\Model\ThreeDResponse;
+use Enesdayanc\VPosEst\Request\AuthorizeRequest;
+use Enesdayanc\VPosEst\Request\CaptureRequest;
+use Enesdayanc\VPosEst\Request\PurchaseRequest;
+use Enesdayanc\VPosEst\Request\RefundRequest;
+use Enesdayanc\VPosEst\Request\RequestInterface;
+use Enesdayanc\VPosEst\Request\VoidRequest;
+use Enesdayanc\VPosEst\Response\Response;
+use Enesdayanc\VPosEst\Setting\Setting;
 
 class VPos
 {

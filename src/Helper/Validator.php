@@ -6,15 +6,15 @@
  * Time: 17:37
  */
 
-namespace VPosEst\Helper;
+namespace Enesdayanc\VPosEst\Helper;
 
 
-use VPosEst\Constant\Currency;
-use VPosEst\Constant\Language;
-use VPosEst\Constant\RequestMode;
-use VPosEst\Exception\ValidationException;
+use Enesdayanc\VPosEst\Constant\Currency;
+use Enesdayanc\VPosEst\Constant\Language;
+use Enesdayanc\VPosEst\Constant\RequestMode;
+use Enesdayanc\VPosEst\Exception\ValidationException;
 use ReflectionClass;
-use VPosEst\Model\ISO4217Currency;
+use Enesdayanc\VPosEst\Model\ISO4217Currency;
 
 class Validator
 {

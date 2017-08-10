@@ -6,7 +6,7 @@
  * Time: 16:34
  */
 
-namespace VPosEst\Constant;
+namespace Enesdayanc\VPosEst\Constant;
 
 class RequestType
 {

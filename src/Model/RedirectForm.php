@@ -6,7 +6,7 @@
  * Time: 17:33
  */
 
-namespace VPosEst\Model;
+namespace Enesdayanc\VPosEst\Model;
 
 
 class RedirectForm

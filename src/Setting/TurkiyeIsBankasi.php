@@ -6,7 +6,7 @@
  * Time: 14:31
  */
 
-namespace VPosEst\Setting;
+namespace Enesdayanc\VPosEst\Setting;
 
 
 class TurkiyeIsBankasi extends Setting

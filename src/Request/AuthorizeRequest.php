@@ -1,10 +1,10 @@
 <?php
 
-namespace VPosEst\Request;
+namespace Enesdayanc\VPosEst\Request;
 
-use VPosEst\Constant;
-use VPosEst\Constant\RequestType;
-use VPosEst\Setting\Credential;
+use Enesdayanc\VPosEst\Constant;
+use Enesdayanc\VPosEst\Constant\RequestType;
+use Enesdayanc\VPosEst\Setting\Credential;
 
 class AuthorizeRequest extends PurchaseRequest implements RequestInterface
 {
