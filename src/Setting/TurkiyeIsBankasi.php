@@ -11,33 +11,35 @@ namespace Enesdayanc\VPosEst\Setting;
 
 class TurkiyeIsBankasi extends Setting
 {
+    private $host = "spos.isbank.com.tr";
+
     public function getThreeDPostUrl()
     {
-        // TODO: Implement getThreeDPostUrl() method.
+        return "https://" . $this->host . "/fim/est3Dgate";
     }
 
     public function getAuthorizeUrl()
     {
-        // TODO: Implement getAuthorizeUrl() method.
+        return "https://" . $this->host . "/servlet/cc5ApiServer";
     }
 
     public function getCaptureUrl()
     {
-        // TODO: Implement getCaptureUrl() method.
+        return "https://" . $this->host . "/servlet/cc5ApiServer";
     }
 
     public function getPurchaseUrl()
     {
-        // TODO: Implement getPurchaseUrl() method.
+        return "https://" . $this->host . "/servlet/cc5ApiServer";
     }
 
     public function getRefundUrl()
     {
-        // TODO: Implement getRefundUrl() method.
+        return "https://" . $this->host . "/servlet/cc5ApiServer";
     }
 
     public function getVoidUrl()
     {
-        // TODO: Implement getVoidUrl() method.
+        return "https://" . $this->host . "/servlet/cc5ApiServer";
     }
 }
