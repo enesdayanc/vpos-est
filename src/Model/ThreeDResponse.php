@@ -286,7 +286,7 @@ class ThreeDResponse
                 in_array($this->getMdStatus(), $this->allowedMdStatus)
                 && ($this->getProcReturnCode() === Success::PROC_RETURN_CODE || $this->getResponse() === Success::RESPONSE)
             ) {
-                $responseClass->setIsSuccessFul(true);
+                $responseClass->setIsSuccessful(true);
             }
         } else {
             $responseClass->setErrorMessage('Invalid Signature');

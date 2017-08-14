@@ -87,7 +87,7 @@ class VposTest extends TestCase
         $response = $this->vPos->purchase($purchaseRequest);
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertTrue($response->isSuccessFul());
+        $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
 
         return array(
@@ -136,7 +136,7 @@ class VposTest extends TestCase
         $response = $this->vPos->authorize($authorizeRequest);
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertTrue($response->isSuccessFul());
+        $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
 
         return array(
@@ -163,7 +163,7 @@ class VposTest extends TestCase
         $response = $this->vPos->authorize($authorizeRequest);
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertFalse($response->isSuccessFul());
+        $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('CORE-2507', $response->getErrorCode());
     }
@@ -184,7 +184,7 @@ class VposTest extends TestCase
         $response = $this->vPos->capture($captureRequest);
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertTrue($response->isSuccessFul());
+        $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
     }
 
@@ -200,7 +200,7 @@ class VposTest extends TestCase
         $response = $this->vPos->capture($captureRequest);
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertFalse($response->isSuccessFul());
+        $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('CORE-2509', $response->getErrorCode());
     }
@@ -221,7 +221,7 @@ class VposTest extends TestCase
         $response = $this->vPos->refund($refundRequest);
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertTrue($response->isSuccessFul());
+        $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
 
         return $params;
@@ -243,7 +243,7 @@ class VposTest extends TestCase
         $response = $this->vPos->refund($refundRequest);
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertFalse($response->isSuccessFul());
+        $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('CORE-2503', $response->getErrorCode());
     }
@@ -262,7 +262,7 @@ class VposTest extends TestCase
 
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertTrue($response->isSuccessFul());
+        $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
     }
 
@@ -275,7 +275,7 @@ class VposTest extends TestCase
         $response = $this->vPos->void($voidRequest);
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertFalse($response->isSuccessFul());
+        $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('CORE-2008', $response->getErrorCode());
     }
@@ -298,7 +298,7 @@ class VposTest extends TestCase
         $response = $this->vPos->purchase3D($purchaseRequest);
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertFalse($response->isSuccessFul());
+        $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertInternalType('array', $response->getRedirectData());
     }
@@ -343,7 +343,7 @@ class VposTest extends TestCase
         $response = $this->vPos->authorize3D($authorizeRequest);
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertFalse($response->isSuccessFul());
+        $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertInternalType('array', $response->getRedirectData());
     }

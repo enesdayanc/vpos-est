@@ -77,7 +77,7 @@ class Helper
 
         if ((!empty($data->ProcReturnCode) && (string)$data->ProcReturnCode === Success::PROC_RETURN_CODE)
             || (!empty($data->Response) && $data->Response === Success::RESPONSE)) {
-            $response->setIsSuccessFul(true);
+            $response->setIsSuccessful(true);
         }
 
         if (!empty($data->AuthCode)) {

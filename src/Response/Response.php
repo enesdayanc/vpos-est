@@ -11,7 +11,7 @@ namespace Enesdayanc\VPosEst\Response;
 
 class Response
 {
-    private $isSuccessFul = false;
+    private $isSuccessful = false;
     private $code;
     private $errorCode;
     private $errorMessage;
@@ -25,17 +25,17 @@ class Response
     /**
      * @return bool
      */
-    public function isSuccessFul()
+    public function isSuccessful()
     {
-        return $this->isSuccessFul;
+        return $this->isSuccessful;
     }
 
     /**
-     * @param bool $isSuccessFul
+     * @param bool $isSuccessful
      */
-    public function setIsSuccessFul($isSuccessFul)
+    public function setIsSuccessful($isSuccessful)
     {
-        $this->isSuccessFul = $isSuccessFul;
+        $this->isSuccessful = $isSuccessful;
     }
 
     /**
