@@ -265,7 +265,7 @@ class ThreeDRequest implements RequestInterface
             "Password" => $credential->getPassword(),
             "ClientId" => $credential->getClientId(),
             "IPAddress" => $this->getIp(),
-            "Email" => $this->email(),
+            "Email" => $this->getEmail(),
             "Mode" => $this->getMode(),
             "OrderId" => $this->getOrderId(),
             "GroupId" => '',
