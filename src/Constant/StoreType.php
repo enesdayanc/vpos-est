@@ -10,5 +10,6 @@ namespace Enesdayanc\VPosEst\Constant;
 
 class StoreType
 {
+    const THREE_D = '3d';
     const THREE_D_PAY = '3d_pay';
 }

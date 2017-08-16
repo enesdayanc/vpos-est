@@ -9,19 +9,33 @@
 namespace Enesdayanc\VPosEst\Setting;
 
 
+use Enesdayanc\VPosEst\Constant\StoreType;
+use Enesdayanc\VPosEst\Exception\NotFoundException;
+
 class TurkiyeIsBankasiTest extends Setting
 {
+
     /**
      * TurkiyeIsBankasiTest constructor.
+     * @param $storeType
+     * @throws NotFoundException
+     * @internal param $storeType
      */
-    public function __construct()
+    public function __construct($storeType)
     {
         $credential = new Credential();
 
         $credential->setUsername('ISBANKAPI');
         $credential->setPassword('ISBANK07');
-        $credential->setClientId('700655000200');
         $credential->setStoreKey('TRPS1234');
+
+        if ($storeType == StoreType::THREE_D_PAY) {
+            $credential->setClientId('700655000200');
+        } elseif ($storeType == StoreType::THREE_D) {
+            $credential->setClientId('700655000100');
+        } else {
+            throw new NotFoundException('Client id no found for store type: ' . $storeType, 'CLIENT_ID_NOT_FOUND');
+        }
 
         parent::setCredential($credential);
     }

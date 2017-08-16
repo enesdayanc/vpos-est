@@ -10,6 +10,7 @@ namespace Enesdayanc\VPosEst;
 
 use Enesdayanc\Iso4217\Iso4217;
 use Enesdayanc\Iso4217\Model\Currency;
+use Enesdayanc\VPosEst\Constant\StoreType;
 use Enesdayanc\VPosEst\Exception\ValidationException;
 use Enesdayanc\VPosEst\Request\RefundRequest;
 use Enesdayanc\VPosEst\Request\VoidRequest;
@@ -41,10 +42,11 @@ class VposTest extends TestCase
 
     public function setUp()
     {
-        $settings = new TurkiyeIsBankasiTest();
+        $settings = new TurkiyeIsBankasiTest(StoreType::THREE_D);
 
-        $settings->setThreeDFailUrl('http://test.fail');
-        $settings->setThreeDSuccessUrl('http://test.success');
+        $settings->setThreeDFailUrl('http://enesdayanc.com/fail');
+        $settings->setThreeDSuccessUrl('http://enesdayanc.com/success');
+        $settings->setStoreType(StoreType::THREE_D);
 
         $this->vPos = new VPos($settings);
 

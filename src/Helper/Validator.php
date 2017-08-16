@@ -11,6 +11,7 @@ namespace Enesdayanc\VPosEst\Helper;
 use Enesdayanc\VPosEst\Constant\Currency;
 use Enesdayanc\VPosEst\Constant\Language;
 use Enesdayanc\VPosEst\Constant\RequestMode;
+use Enesdayanc\VPosEst\Constant\StoreType;
 use Enesdayanc\VPosEst\Exception\ValidationException;
 
 class Validator
@@ -25,6 +26,13 @@ class Validator
 
         if (!in_array($alpha3, Helper::getConstants(Currency::class))) {
             throw new ValidationException('Invalid Currency', 'INVALID_CURRENCY');
+        }
+    }
+
+    public static function validateStoreType($value)
+    {
+        if (!in_array($value, Helper::getConstants(StoreType::class))) {
+            throw new ValidationException('Invalid Store Type', 'INVALID_STORE_TYPE');
         }
     }
 

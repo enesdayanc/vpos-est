@@ -16,6 +16,7 @@ abstract class Setting
     private $credential;
     private $threeDSuccessUrl;
     private $threeDFailUrl;
+    private $storeType;
 
     /**
      * @return Credential
@@ -65,6 +66,22 @@ abstract class Setting
         $this->threeDFailUrl = $threeDFailUrl;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getStoreType()
+    {
+        return $this->storeType;
+    }
+
+    /**
+     * @param mixed $storeType
+     */
+    public function setStoreType($storeType)
+    {
+        $this->storeType = $storeType;
+    }
+
     public function validate()
     {
         Validator::validateNotEmpty('credential', $this->getCredential());
@@ -79,6 +96,7 @@ abstract class Setting
             Validator::validateNotEmpty('threeDPostUrl', $this->getThreeDPostUrl());
             Validator::validateNotEmpty('threeDFailUrl', $this->getThreeDFailUrl());
             Validator::validateNotEmpty('threeDSuccessUrl', $this->getThreeDSuccessUrl());
+            Validator::validateStoreType($this->getStoreType());
         }
     }
 
