@@ -333,7 +333,7 @@ class PurchaseRequest implements RequestInterface
             'rnd' => $rnd,
             'islemtipi' => $this->getType(),
             'taksit' => $this->getInstallment(),
-            'storetype' => StoreType::THREE_D_PAY,
+            'storetype' => $setting->getStoreType(),
             'lang' => $this->getLanguage(),
             'hash' => $this->get3DHash($rnd, $setting),
             'amount' => $this->getAmount(),
