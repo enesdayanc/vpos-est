@@ -15,6 +15,7 @@ use Enesdayanc\VPosEst\Constant\Success;
 use Enesdayanc\VPosEst\Exception\ValidationException;
 use ReflectionClass;
 use Enesdayanc\VPosEst\Response\Response;
+use Spatie\ArrayToXml\ArrayToXml;
 
 class Helper
 {
@@ -40,11 +41,7 @@ class Helper
 
     public static function arrayToXmlString(array $array)
     {
-        $document = new XMLBuilder();
-
-        $domElements = $document->createElementsWithTextNodes($array);
-        $document->appendListOfElementsToElement($document->root(), $domElements);
-        return $document->saveXML();
+        return ArrayToXml::convert($array, 'CC5Request');
     }
 
     public static function getConstants($class)
