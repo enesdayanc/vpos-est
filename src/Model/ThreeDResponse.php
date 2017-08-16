@@ -9,11 +9,15 @@
 namespace Enesdayanc\VPosEst\Model;
 
 
+use Enesdayanc\Iso4217\Model\Currency;
 use Enesdayanc\VPosEst\Constant\MdStatus;
+use Enesdayanc\VPosEst\Constant\StoreType;
 use Enesdayanc\VPosEst\Constant\Success;
+use Enesdayanc\VPosEst\Exception\ValidationException;
 use Enesdayanc\VPosEst\Helper\Helper;
+use Enesdayanc\VPosEst\HttpClient;
+use Enesdayanc\VPosEst\Request\ThreeDRequest;
 use Enesdayanc\VPosEst\Response\Response;
-use Enesdayanc\VPosEst\Setting\Credential;
 use Enesdayanc\VPosEst\Setting\Setting;
 
 class ThreeDResponse
@@ -39,6 +43,144 @@ class ThreeDResponse
     private $hashParams;
     private $hashParamsVal;
     private $transId;
+    private $type;
+    private $userIp;
+    private $userEmail;
+    private $mode;
+    private $amount;
+    private $installment;
+    private $xid;
+    /** @var  Currency */
+    private $currency;
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserIp()
+    {
+        return $this->userIp;
+    }
+
+    /**
+     * @param mixed $userIp
+     */
+    public function setUserIp($userIp)
+    {
+        $this->userIp = $userIp;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserEmail()
+    {
+        return $this->userEmail;
+    }
+
+    /**
+     * @param mixed $userEmail
+     */
+    public function setUserEmail($userEmail)
+    {
+        $this->userEmail = $userEmail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
+
+    /**
+     * @param mixed $mode
+     */
+    public function setMode($mode)
+    {
+        $this->mode = $mode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param mixed $amount
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInstallment()
+    {
+        return $this->installment;
+    }
+
+    /**
+     * @param mixed $installment
+     */
+    public function setInstallment($installment)
+    {
+        $this->installment = $installment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getXid()
+    {
+        return $this->xid;
+    }
+
+    /**
+     * @param mixed $xid
+     */
+    public function setXid($xid)
+    {
+        $this->xid = $xid;
+    }
+
+    /**
+     * @return Currency
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param Currency $currency
+     */
+    public function setCurrency(Currency $currency)
+    {
+        $this->currency = $currency;
+    }
+
 
     /**
      * @return mixed
@@ -268,11 +410,10 @@ class ThreeDResponse
     /**
      * @param Setting $setting
      * @return Response
+     * @throws ValidationException
      */
     public function getResponseClass(Setting $setting)
     {
-        $setting->validate();
-
         $validSignature = $this->isValidSignature($setting);
 
         $responseClass = new Response();
@@ -282,17 +423,67 @@ class ThreeDResponse
 
         if ($validSignature) {
 
-            if (
-                in_array($this->getMdStatus(), $this->allowedMdStatus)
-                && ($this->getProcReturnCode() === Success::PROC_RETURN_CODE || $this->getResponse() === Success::RESPONSE)
-            ) {
-                $responseClass->setIsSuccessful(true);
+            if (in_array($this->getMdStatus(), $this->allowedMdStatus)) {
+                if ($setting->getStoreType() == StoreType::THREE_D_PAY
+                    && ($this->getProcReturnCode() === Success::PROC_RETURN_CODE || $this->getResponse() === Success::RESPONSE)
+                ) {
+                    $responseClass = $this->getResponseClass3DPayModel($setting);
+                } elseif ($setting->getStoreType() == StoreType::THREE_D) {
+                    $responseClass = $this->getResponseClassFor3DModel($setting);
+                } else {
+                    throw new ValidationException('Invalid store type' . $setting->getStoreType(), 'INVALID_STORE_TYPE');
+                }
             }
         } else {
             $responseClass->setErrorMessage('Invalid Signature');
         }
 
         return $responseClass;
+    }
+
+
+    /**
+     * @param Setting $setting
+     * @return Response
+     */
+    private function getResponseClass3DPayModel(Setting $setting)
+    {
+        $responseClass = new Response();
+
+        $responseClass->setCode($this->getAuthCode());
+        $responseClass->setTransactionReference($this->getTransId());
+        $responseClass->setIsSuccessful(true);
+
+        return $responseClass;
+    }
+
+    /**
+     * @param Setting $setting
+     * @return Response
+     */
+    private function getResponseClassFor3DModel(Setting $setting)
+    {
+        $responseClass = new Response();
+        $responseClass->setCode($this->getAuthCode());
+        $responseClass->setTransactionReference($this->getTransId());
+
+        $threeDRequest = new ThreeDRequest();
+        $threeDRequest->setIp($this->getUserIp());
+        $threeDRequest->setEmail($this->getUserEmail());
+        $threeDRequest->setMode($this->getMode());
+        $threeDRequest->setOrderId($this->getOrderId());
+        $threeDRequest->setType($this->getType());
+        $threeDRequest->setMd($this->getMd());
+        $threeDRequest->setAmount($this->getAmount());
+        $threeDRequest->setCurrency($this->getCurrency());
+        $threeDRequest->setInstallment($this->getInstallment());
+        $threeDRequest->setXid($this->getXid());
+        $threeDRequest->setEci($this->getEci());
+        $threeDRequest->setCavv($this->getCavv());
+
+        $httpClient = new HttpClient($setting);
+
+        return $httpClient->send($threeDRequest, $setting->getPurchaseUrl());
     }
 
 

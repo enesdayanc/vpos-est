@@ -11,6 +11,7 @@ namespace Enesdayanc\VPosEst\Helper;
 use Enesdayanc\VPosEst\Constant\Currency;
 use Enesdayanc\VPosEst\Constant\Language;
 use Enesdayanc\VPosEst\Constant\RequestMode;
+use Enesdayanc\VPosEst\Constant\RequestType;
 use Enesdayanc\VPosEst\Constant\StoreType;
 use Enesdayanc\VPosEst\Exception\ValidationException;
 
@@ -84,6 +85,13 @@ class Validator
     {
         if (!in_array($value, Helper::getConstants(RequestMode::class))) {
             throw new ValidationException('Invalid Request Mode', 'INVALID_REQUEST_MODE');
+        }
+    }
+
+    public static function validateRequestType($value)
+    {
+        if (!in_array($value, Helper::getConstants(RequestType::class))) {
+            throw new ValidationException('Invalid Request Type', 'INVALID_REQUEST_TYPE');
         }
     }
 

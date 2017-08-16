@@ -56,23 +56,16 @@ class VPos
         return $this->send($voidRequest, $this->setting->getVoidUrl());
     }
 
+    /**
+     * @param RequestInterface $requestElements
+     * @param $url
+     * @return Response
+     */
     private function send(RequestInterface $requestElements, $url)
     {
-        $documentString = $requestElements->toXmlString($this->setting->getCredential());
+        $httpClient = new HttpClient($this->setting);
 
-        $client = new Client();
-
-        try {
-            $clientResponse = $client->post($url, [
-                'form_params' => [
-                    'DATA' => $documentString,
-                ]
-            ]);
-        } catch (Exception $exception) {
-            throw new CurlException('Connection Error', $exception->getMessage());
-        }
-
-        return Helper::getResponseByXML($clientResponse->getBody()->getContents());
+        return $httpClient->send($requestElements, $url);
     }
 
     public function authorize3D(AuthorizeRequest $authorizeRequest)
