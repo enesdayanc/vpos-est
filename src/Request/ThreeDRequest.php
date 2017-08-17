@@ -281,7 +281,30 @@ class ThreeDRequest implements RequestInterface
             "PayerTxnId" => $this->getXid(),
             "PayerSecurityLevel" => $this->getEci(),
             "PayerAuthenticationCode" => $this->getCavv(),
-            "CardholderPresentCode" => CardholderPresentCode::THREE_D
+            "CardholderPresentCode" => CardholderPresentCode::THREE_D,
+            "BillTo" => array(
+                "Name" => '',
+                "Street1" => '',
+                "Street2" => '',
+                "Street3" => '',
+                "City" => '',
+                "StateProv" => '',
+                "PostalCode" => '',
+                "Country" => '',
+                "Company" => '',
+                "TelVoice" => '',
+            ),
+            "ShipTo" => array(
+                "Name" => '',
+                "Street1" => '',
+                "Street2" => '',
+                "Street3" => '',
+                "City" => '',
+                "StateProv" => '',
+                "PostalCode" => '',
+                "Country" => '',
+            ),
+            "Extra" => '',
         );
 
         return Helper::arrayToXmlString($elements);
