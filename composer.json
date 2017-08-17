@@ -13,7 +13,7 @@
   "require": {
     "php": ">=5.5",
     "guzzlehttp/guzzle": "~6.0",
-    "enesdayanc/iso4217": "~1.0",
+    "enesdayanc/iso4217": "~2.0",
     "spatie/array-to-xml": "^2.5"
   },
   "require-dev": {

@@ -8,7 +8,7 @@
 
 namespace Enesdayanc\VPosEst\Request;
 
-use Enesdayanc\Iso4217\Model\Currency;
+use Enesdayanc\ISO4217\Model\Currency;
 use Enesdayanc\VPosEst\Constant\RequestType;
 use Enesdayanc\VPosEst\Helper\Helper;
 use Enesdayanc\VPosEst\Helper\Validator;

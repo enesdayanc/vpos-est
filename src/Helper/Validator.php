@@ -19,7 +19,7 @@ class Validator
 {
     public static function validateCurrency($value)
     {
-        if (!$value instanceof \Enesdayanc\Iso4217\Model\Currency) {
+        if (!$value instanceof \Enesdayanc\ISO4217\Model\Currency) {
             throw new ValidationException('Invalid Currency Type', 'INVALID_CURRENCY_TYPE');
         }
 

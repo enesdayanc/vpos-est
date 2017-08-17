@@ -9,7 +9,7 @@
 namespace Enesdayanc\VPosEst\Model;
 
 
-use Enesdayanc\Iso4217\Model\Currency;
+use Enesdayanc\ISO4217\Model\Currency;
 use Enesdayanc\VPosEst\Constant\MdStatus;
 use Enesdayanc\VPosEst\Constant\StoreType;
 use Enesdayanc\VPosEst\Constant\Success;

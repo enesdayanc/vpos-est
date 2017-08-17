@@ -8,8 +8,8 @@
 
 namespace Enesdayanc\VPosEst;
 
-use Enesdayanc\Iso4217\Iso4217;
-use Enesdayanc\Iso4217\Model\Currency;
+use Enesdayanc\ISO4217\ISO4217;
+use Enesdayanc\ISO4217\Model\Currency;
 use Enesdayanc\VPosEst\Constant\StoreType;
 use Enesdayanc\VPosEst\Exception\ValidationException;
 use Enesdayanc\VPosEst\Request\RefundRequest;
@@ -60,7 +60,7 @@ class VposTest extends TestCase
 
         $this->card = $card;
 
-        $iso4217 = new Iso4217();
+        $iso4217 = new ISO4217();
 
         $this->currency = $iso4217->getByCode('TRY');
 
