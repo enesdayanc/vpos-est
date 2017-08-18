@@ -86,13 +86,13 @@ abstract class Setting
     {
         Validator::validateNotEmpty('credential', $this->getCredential());
         $this->getCredential()->validate();
+        Validator::validateNotEmpty('purchaseUrl', $this->getPurchaseUrl());
         Validator::validateNotEmpty('authorizeUrl', $this->getAuthorizeUrl());
         Validator::validateNotEmpty('captureUrl', $this->getCaptureUrl());
         Validator::validateNotEmpty('voidUrl', $this->getVoidUrl());
         Validator::validateNotEmpty('refundUrl', $this->getRefundUrl());
 
         if (!empty($this->getCredential()->getStoreKey())) {
-            Validator::validateNotEmpty('purchaseUrl', $this->getPurchaseUrl());
             Validator::validateNotEmpty('threeDPostUrl', $this->getThreeDPostUrl());
             Validator::validateNotEmpty('threeDFailUrl', $this->getThreeDFailUrl());
             Validator::validateNotEmpty('threeDSuccessUrl', $this->getThreeDSuccessUrl());
