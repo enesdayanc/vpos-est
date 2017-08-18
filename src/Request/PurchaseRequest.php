@@ -6,18 +6,18 @@
  * Time: 14:36
  */
 
-namespace Enesdayanc\VPosEst\Request;
+namespace PaymentGateway\VPosEst\Request;
 
-use Enesdayanc\ISO4217\Model\Currency;
-use Enesdayanc\VPosEst\Constant\RedirectFormMethod;
-use Enesdayanc\VPosEst\Constant\RequestType;
-use Enesdayanc\VPosEst\Constant\StoreType;
-use Enesdayanc\VPosEst\Helper\Helper;
-use Enesdayanc\VPosEst\Helper\Validator;
-use Enesdayanc\VPosEst\Model\Card;
-use Enesdayanc\VPosEst\Model\RedirectForm;
-use Enesdayanc\VPosEst\Setting\Credential;
-use Enesdayanc\VPosEst\Setting\Setting;
+use PaymentGateway\ISO4217\Model\Currency;
+use PaymentGateway\VPosEst\Constant\RedirectFormMethod;
+use PaymentGateway\VPosEst\Constant\RequestType;
+use PaymentGateway\VPosEst\Constant\StoreType;
+use PaymentGateway\VPosEst\Helper\Helper;
+use PaymentGateway\VPosEst\Helper\Validator;
+use PaymentGateway\VPosEst\Model\Card;
+use PaymentGateway\VPosEst\Model\RedirectForm;
+use PaymentGateway\VPosEst\Setting\Credential;
+use PaymentGateway\VPosEst\Setting\Setting;
 
 class PurchaseRequest implements RequestInterface
 {

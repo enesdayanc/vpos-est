@@ -6,7 +6,7 @@
  * Time: 15:56
  */
 
-namespace Enesdayanc\VPosEst\Exception;
+namespace PaymentGateway\VPosEst\Exception;
 
 
 class CurlException extends BaseException

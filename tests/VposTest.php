@@ -6,23 +6,23 @@
  * Time: 16:36
  */
 
-namespace Enesdayanc\VPosEst;
+namespace PaymentGateway\VPosEst;
 
-use Enesdayanc\ISO4217\ISO4217;
-use Enesdayanc\ISO4217\Model\Currency;
-use Enesdayanc\VPosEst\Constant\StoreType;
-use Enesdayanc\VPosEst\Exception\ValidationException;
-use Enesdayanc\VPosEst\Request\RefundRequest;
-use Enesdayanc\VPosEst\Request\VoidRequest;
+use PaymentGateway\ISO4217\ISO4217;
+use PaymentGateway\ISO4217\Model\Currency;
+use PaymentGateway\VPosEst\Constant\StoreType;
+use PaymentGateway\VPosEst\Exception\ValidationException;
+use PaymentGateway\VPosEst\Request\RefundRequest;
+use PaymentGateway\VPosEst\Request\VoidRequest;
 use PHPUnit\Framework\TestCase;
-use Enesdayanc\VPosEst\Constant\Language;
-use Enesdayanc\VPosEst\Constant\RequestMode;
-use Enesdayanc\VPosEst\Model\Card;
-use Enesdayanc\VPosEst\Request\AuthorizeRequest;
-use Enesdayanc\VPosEst\Request\CaptureRequest;
-use Enesdayanc\VPosEst\Request\PurchaseRequest;
-use Enesdayanc\VPosEst\Response\Response;
-use Enesdayanc\VPosEst\Setting\TurkiyeIsBankasiTest;
+use PaymentGateway\VPosEst\Constant\Language;
+use PaymentGateway\VPosEst\Constant\RequestMode;
+use PaymentGateway\VPosEst\Model\Card;
+use PaymentGateway\VPosEst\Request\AuthorizeRequest;
+use PaymentGateway\VPosEst\Request\CaptureRequest;
+use PaymentGateway\VPosEst\Request\PurchaseRequest;
+use PaymentGateway\VPosEst\Response\Response;
+use PaymentGateway\VPosEst\Setting\TurkiyeIsBankasiTest;
 
 class VposTest extends TestCase
 {

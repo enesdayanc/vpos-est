@@ -6,7 +6,7 @@
  * Time: 15:06
  */
 
-namespace Enesdayanc\VPosEst\Exception;
+namespace PaymentGateway\VPosEst\Exception;
 
 use Exception;
 use Throwable;

@@ -6,7 +6,7 @@
  * Time: 17:21
  */
 
-namespace Enesdayanc\VPosEst\Setting;
+namespace PaymentGateway\VPosEst\Setting;
 
 
 class Finansbank extends Setting

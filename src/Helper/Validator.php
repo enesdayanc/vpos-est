@@ -6,20 +6,20 @@
  * Time: 17:37
  */
 
-namespace Enesdayanc\VPosEst\Helper;
+namespace PaymentGateway\VPosEst\Helper;
 
-use Enesdayanc\VPosEst\Constant\Currency;
-use Enesdayanc\VPosEst\Constant\Language;
-use Enesdayanc\VPosEst\Constant\RequestMode;
-use Enesdayanc\VPosEst\Constant\RequestType;
-use Enesdayanc\VPosEst\Constant\StoreType;
-use Enesdayanc\VPosEst\Exception\ValidationException;
+use PaymentGateway\VPosEst\Constant\Currency;
+use PaymentGateway\VPosEst\Constant\Language;
+use PaymentGateway\VPosEst\Constant\RequestMode;
+use PaymentGateway\VPosEst\Constant\RequestType;
+use PaymentGateway\VPosEst\Constant\StoreType;
+use PaymentGateway\VPosEst\Exception\ValidationException;
 
 class Validator
 {
     public static function validateCurrency($value)
     {
-        if (!$value instanceof \Enesdayanc\ISO4217\Model\Currency) {
+        if (!$value instanceof \PaymentGateway\ISO4217\Model\Currency) {
             throw new ValidationException('Invalid Currency Type', 'INVALID_CURRENCY_TYPE');
         }
 

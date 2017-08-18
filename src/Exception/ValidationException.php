@@ -1,6 +1,6 @@
 <?php
 
-namespace Enesdayanc\VPosEst\Exception;
+namespace PaymentGateway\VPosEst\Exception;
 
 class ValidationException extends BaseException
 {

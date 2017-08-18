@@ -6,9 +6,9 @@
  * Time: 14:29
  */
 
-namespace Enesdayanc\VPosEst\Setting;
+namespace PaymentGateway\VPosEst\Setting;
 
-use Enesdayanc\VPosEst\Helper\Validator;
+use PaymentGateway\VPosEst\Helper\Validator;
 
 abstract class Setting
 {

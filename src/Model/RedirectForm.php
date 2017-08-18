@@ -6,7 +6,7 @@
  * Time: 17:33
  */
 
-namespace Enesdayanc\VPosEst\Model;
+namespace PaymentGateway\VPosEst\Model;
 
 
 class RedirectForm

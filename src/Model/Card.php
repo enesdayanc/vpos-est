@@ -6,10 +6,10 @@
  * Time: 14:32
  */
 
-namespace Enesdayanc\VPosEst\Model;
+namespace PaymentGateway\VPosEst\Model;
 
 
-use Enesdayanc\VPosEst\Helper\Validator;
+use PaymentGateway\VPosEst\Helper\Validator;
 
 class Card
 {

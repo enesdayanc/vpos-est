@@ -6,7 +6,7 @@
  * Time: 17:20
  */
 
-namespace Enesdayanc\VPosEst\Setting;
+namespace PaymentGateway\VPosEst\Setting;
 
 
 class AkBank extends Setting

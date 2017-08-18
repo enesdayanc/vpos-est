@@ -6,10 +6,10 @@
  * Time: 13:56
  */
 
-namespace Enesdayanc\VPosEst\Request;
+namespace PaymentGateway\VPosEst\Request;
 
 
-use Enesdayanc\VPosEst\Setting\Credential;
+use PaymentGateway\VPosEst\Setting\Credential;
 
 interface RequestInterface
 {

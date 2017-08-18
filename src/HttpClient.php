@@ -6,13 +6,13 @@
  * Time: 14:07
  */
 
-namespace Enesdayanc\VPosEst;
+namespace PaymentGateway\VPosEst;
 
 
-use Enesdayanc\VPosEst\Exception\CurlException;
-use Enesdayanc\VPosEst\Helper\Helper;
-use Enesdayanc\VPosEst\Request\RequestInterface;
-use Enesdayanc\VPosEst\Setting\Setting;
+use PaymentGateway\VPosEst\Exception\CurlException;
+use PaymentGateway\VPosEst\Helper\Helper;
+use PaymentGateway\VPosEst\Request\RequestInterface;
+use PaymentGateway\VPosEst\Setting\Setting;
 use Exception;
 use GuzzleHttp\Client;
 

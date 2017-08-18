@@ -1,24 +1,24 @@
 <?php
 
-namespace Enesdayanc\VPosEst;
+namespace PaymentGateway\VPosEst;
 
 use Exception;
 use GuzzleHttp\Client;
-use Enesdayanc\VPosEst\Constant\RedirectFormMethod;
-use Enesdayanc\VPosEst\Constant\StoreType;
-use Enesdayanc\VPosEst\Exception\CurlException;
-use Enesdayanc\VPosEst\Helper\Helper;
-use Enesdayanc\VPosEst\Model\Card;
-use Enesdayanc\VPosEst\Model\RedirectForm;
-use Enesdayanc\VPosEst\Model\ThreeDResponse;
-use Enesdayanc\VPosEst\Request\AuthorizeRequest;
-use Enesdayanc\VPosEst\Request\CaptureRequest;
-use Enesdayanc\VPosEst\Request\PurchaseRequest;
-use Enesdayanc\VPosEst\Request\RefundRequest;
-use Enesdayanc\VPosEst\Request\RequestInterface;
-use Enesdayanc\VPosEst\Request\VoidRequest;
-use Enesdayanc\VPosEst\Response\Response;
-use Enesdayanc\VPosEst\Setting\Setting;
+use PaymentGateway\VPosEst\Constant\RedirectFormMethod;
+use PaymentGateway\VPosEst\Constant\StoreType;
+use PaymentGateway\VPosEst\Exception\CurlException;
+use PaymentGateway\VPosEst\Helper\Helper;
+use PaymentGateway\VPosEst\Model\Card;
+use PaymentGateway\VPosEst\Model\RedirectForm;
+use PaymentGateway\VPosEst\Model\ThreeDResponse;
+use PaymentGateway\VPosEst\Request\AuthorizeRequest;
+use PaymentGateway\VPosEst\Request\CaptureRequest;
+use PaymentGateway\VPosEst\Request\PurchaseRequest;
+use PaymentGateway\VPosEst\Request\RefundRequest;
+use PaymentGateway\VPosEst\Request\RequestInterface;
+use PaymentGateway\VPosEst\Request\VoidRequest;
+use PaymentGateway\VPosEst\Response\Response;
+use PaymentGateway\VPosEst\Setting\Setting;
 
 class VPos
 {

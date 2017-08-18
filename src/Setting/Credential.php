@@ -6,10 +6,10 @@
  * Time: 17:06
  */
 
-namespace Enesdayanc\VPosEst\Setting;
+namespace PaymentGateway\VPosEst\Setting;
 
 
-use Enesdayanc\VPosEst\Helper\Validator;
+use PaymentGateway\VPosEst\Helper\Validator;
 
 class Credential
 {

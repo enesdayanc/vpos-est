@@ -1,10 +1,10 @@
 <?php
 
-namespace Enesdayanc\VPosEst\Request;
+namespace PaymentGateway\VPosEst\Request;
 
-use Enesdayanc\VPosEst\Constant;
-use Enesdayanc\VPosEst\Constant\RequestType;
-use Enesdayanc\VPosEst\Setting\Credential;
+use PaymentGateway\VPosEst\Constant;
+use PaymentGateway\VPosEst\Constant\RequestType;
+use PaymentGateway\VPosEst\Setting\Credential;
 
 class AuthorizeRequest extends PurchaseRequest implements RequestInterface
 {

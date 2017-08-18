@@ -6,7 +6,7 @@
  * Time: 14:34
  */
 
-namespace Enesdayanc\VPosEst\Constant;
+namespace PaymentGateway\VPosEst\Constant;
 
 
 class CardholderPresentCode

@@ -6,7 +6,7 @@
  * Time: 14:45
  */
 
-namespace Enesdayanc\VPosEst\Constant;
+namespace PaymentGateway\VPosEst\Constant;
 
 
 class MdStatus

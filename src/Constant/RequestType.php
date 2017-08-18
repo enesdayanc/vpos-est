@@ -6,7 +6,7 @@
  * Time: 16:34
  */
 
-namespace Enesdayanc\VPosEst\Constant;
+namespace PaymentGateway\VPosEst\Constant;
 
 class RequestType
 {

@@ -6,7 +6,7 @@
  * Time: 16:44
  */
 
-namespace Enesdayanc\VPosEst\Constant;
+namespace PaymentGateway\VPosEst\Constant;
 
 
 class RedirectFormMethod

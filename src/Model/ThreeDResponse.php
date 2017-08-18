@@ -6,19 +6,19 @@
  * Time: 11:53
  */
 
-namespace Enesdayanc\VPosEst\Model;
+namespace PaymentGateway\VPosEst\Model;
 
 
-use Enesdayanc\ISO4217\Model\Currency;
-use Enesdayanc\VPosEst\Constant\MdStatus;
-use Enesdayanc\VPosEst\Constant\StoreType;
-use Enesdayanc\VPosEst\Constant\Success;
-use Enesdayanc\VPosEst\Exception\ValidationException;
-use Enesdayanc\VPosEst\Helper\Helper;
-use Enesdayanc\VPosEst\HttpClient;
-use Enesdayanc\VPosEst\Request\ThreeDRequest;
-use Enesdayanc\VPosEst\Response\Response;
-use Enesdayanc\VPosEst\Setting\Setting;
+use PaymentGateway\ISO4217\Model\Currency;
+use PaymentGateway\VPosEst\Constant\MdStatus;
+use PaymentGateway\VPosEst\Constant\StoreType;
+use PaymentGateway\VPosEst\Constant\Success;
+use PaymentGateway\VPosEst\Exception\ValidationException;
+use PaymentGateway\VPosEst\Helper\Helper;
+use PaymentGateway\VPosEst\HttpClient;
+use PaymentGateway\VPosEst\Request\ThreeDRequest;
+use PaymentGateway\VPosEst\Response\Response;
+use PaymentGateway\VPosEst\Setting\Setting;
 
 class ThreeDResponse
 {

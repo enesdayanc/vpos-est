@@ -6,7 +6,7 @@
  * Time: 14:58
  */
 
-namespace Enesdayanc\VPosEst\Constant;
+namespace PaymentGateway\VPosEst\Constant;
 
 
 class Success

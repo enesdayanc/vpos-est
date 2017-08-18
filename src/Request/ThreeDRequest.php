@@ -6,13 +6,13 @@
  * Time: 14:54
  */
 
-namespace Enesdayanc\VPosEst\Request;
+namespace PaymentGateway\VPosEst\Request;
 
-use Enesdayanc\ISO4217\Model\Currency;
-use Enesdayanc\VPosEst\Constant\CardholderPresentCode;
-use Enesdayanc\VPosEst\Helper\Helper;
-use Enesdayanc\VPosEst\Helper\Validator;
-use Enesdayanc\VPosEst\Setting\Credential;
+use PaymentGateway\ISO4217\Model\Currency;
+use PaymentGateway\VPosEst\Constant\CardholderPresentCode;
+use PaymentGateway\VPosEst\Helper\Helper;
+use PaymentGateway\VPosEst\Helper\Validator;
+use PaymentGateway\VPosEst\Setting\Credential;
 
 class ThreeDRequest implements RequestInterface
 {

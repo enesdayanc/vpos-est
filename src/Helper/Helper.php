@@ -6,15 +6,15 @@
  * Time: 14:22
  */
 
-namespace Enesdayanc\VPosEst\Helper;
+namespace PaymentGateway\VPosEst\Helper;
 
 
 use Exception;
 use SimpleXMLElement;
-use Enesdayanc\VPosEst\Constant\Success;
-use Enesdayanc\VPosEst\Exception\ValidationException;
+use PaymentGateway\VPosEst\Constant\Success;
+use PaymentGateway\VPosEst\Exception\ValidationException;
 use ReflectionClass;
-use Enesdayanc\VPosEst\Response\Response;
+use PaymentGateway\VPosEst\Response\Response;
 use Spatie\ArrayToXml\ArrayToXml;
 
 class Helper

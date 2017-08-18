@@ -6,7 +6,7 @@
  * Time: 16:42
  */
 
-namespace Enesdayanc\VPosEst\Constant;
+namespace PaymentGateway\VPosEst\Constant;
 
 class StoreType
 {

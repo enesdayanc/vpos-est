@@ -6,7 +6,7 @@
  * Time: 14:57
  */
 
-namespace Enesdayanc\VPosEst\Response;
+namespace PaymentGateway\VPosEst\Response;
 
 
 class Response

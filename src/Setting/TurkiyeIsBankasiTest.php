@@ -6,11 +6,11 @@
  * Time: 14:39
  */
 
-namespace Enesdayanc\VPosEst\Setting;
+namespace PaymentGateway\VPosEst\Setting;
 
 
-use Enesdayanc\VPosEst\Constant\StoreType;
-use Enesdayanc\VPosEst\Exception\NotFoundException;
+use PaymentGateway\VPosEst\Constant\StoreType;
+use PaymentGateway\VPosEst\Exception\NotFoundException;
 
 class TurkiyeIsBankasiTest extends Setting
 {

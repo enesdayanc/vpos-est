@@ -6,7 +6,7 @@
  * Time: 17:15
  */
 
-namespace Enesdayanc\VPosEst\Setting;
+namespace PaymentGateway\VPosEst\Setting;
 
 
 class TurkEkonomiBankasi extends Setting

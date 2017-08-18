@@ -6,7 +6,7 @@
  * Time: 15:08
  */
 
-namespace Enesdayanc\VPosEst\Exception;
+namespace PaymentGateway\VPosEst\Exception;
 
 class NotFoundException extends BaseException
 {

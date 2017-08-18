@@ -6,14 +6,14 @@
  * Time: 10:03
  */
 
-namespace Enesdayanc\VPosEst\Request;
+namespace PaymentGateway\VPosEst\Request;
 
 
-use Enesdayanc\ISO4217\Model\Currency;
-use Enesdayanc\VPosEst\Constant\RequestType;
-use Enesdayanc\VPosEst\Helper\Helper;
-use Enesdayanc\VPosEst\Helper\Validator;
-use Enesdayanc\VPosEst\Setting\Credential;
+use PaymentGateway\ISO4217\Model\Currency;
+use PaymentGateway\VPosEst\Constant\RequestType;
+use PaymentGateway\VPosEst\Helper\Helper;
+use PaymentGateway\VPosEst\Helper\Validator;
+use PaymentGateway\VPosEst\Setting\Credential;
 
 class CaptureRequest implements RequestInterface
 {
