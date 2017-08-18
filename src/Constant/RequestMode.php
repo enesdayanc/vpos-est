@@ -10,6 +10,5 @@ namespace PaymentGateway\VPosEst\Constant;
 
 class RequestMode
 {
-    const T = 'T';
     const P = 'P';
 }
