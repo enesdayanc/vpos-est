@@ -463,10 +463,6 @@ class ThreeDResponse
      */
     private function getResponseClassFor3DModel(Setting $setting)
     {
-        $responseClass = new Response();
-        $responseClass->setCode($this->getAuthCode());
-        $responseClass->setTransactionReference($this->getTransId());
-
         $threeDRequest = new ThreeDRequest();
         $threeDRequest->setIp($this->getUserIp());
         $threeDRequest->setEmail($this->getUserEmail());
