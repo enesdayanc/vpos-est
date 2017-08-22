@@ -102,7 +102,7 @@ class CaptureRequest implements RequestInterface
             "OrderId" => $this->getOrderId(),
             "Type" => $this->getType(),
             "Currency" => $this->getCurrency()->getNumeric(),
-            "Total" => $this->getAmount(),
+            "Total" => Helper::amountParser($this->getAmount()),
         );
 
         return Helper::arrayToXmlString($elements);

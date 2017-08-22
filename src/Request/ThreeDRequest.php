@@ -258,7 +258,7 @@ class ThreeDRequest implements RequestInterface
             "Number" => $this->getMd(),
             "Expires" => '',
             "Cvv2Val" => '',
-            "Total" => $this->getAmount(),
+            "Total" => Helper::amountParser($this->getAmount()),
             "Currency" => $this->getCurrency()->getNumeric(),
             "Taksit" => $this->getInstallment(),
             "PayerTxnId" => $this->getXid(),

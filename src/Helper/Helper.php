@@ -95,4 +95,10 @@ class Helper
 
         return $response;
     }
+
+    public static function amountParser($amount)
+    {
+        return $amount;
+        return (int)number_format($amount, 2, '', '');
+    }
 }

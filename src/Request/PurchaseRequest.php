@@ -271,7 +271,7 @@ class PurchaseRequest implements RequestInterface
             "Number" => $card->getCreditCardNumber(),
             "Expires" => $card->getExpires(),
             "Cvv2Val" => $card->getCvv(),
-            "Total" => $this->getAmount(),
+            "Total" => Helper::amountParser($this->getAmount()),
             "Email" => $this->getEmail(),
             "IPAddress" => $this->getIp(),
         );
@@ -319,7 +319,7 @@ class PurchaseRequest implements RequestInterface
             'storetype' => $setting->getStoreType(),
             'lang' => $this->getLanguage(),
             'hash' => $this->get3DHash($rnd, $setting),
-            'amount' => $this->getAmount(),
+            'amount' => Helper::amountParser($this->getAmount()),
             'currency' => $this->getCurrency()->getNumeric()
         );
 
@@ -338,7 +338,7 @@ class PurchaseRequest implements RequestInterface
         $hashString = Helper::get3DHashString(
             $credential->getClientId(),
             $this->getOrderId(),
-            $this->getAmount(),
+            Helper::amountParser($this->getAmount()),
             $setting->getThreeDSuccessUrl(),
             $setting->getThreeDFailUrl(),
             $this->getType(),
