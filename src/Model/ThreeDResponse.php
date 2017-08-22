@@ -46,7 +46,6 @@ class ThreeDResponse
     private $type;
     private $userIp;
     private $userEmail;
-    private $mode;
     private $amount;
     private $installment;
     private $xid;
@@ -99,22 +98,6 @@ class ThreeDResponse
     public function setUserEmail($userEmail)
     {
         $this->userEmail = $userEmail;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMode()
-    {
-        return $this->mode;
-    }
-
-    /**
-     * @param mixed $mode
-     */
-    public function setMode($mode)
-    {
-        $this->mode = $mode;
     }
 
     /**
@@ -466,7 +449,6 @@ class ThreeDResponse
         $threeDRequest = new ThreeDRequest();
         $threeDRequest->setIp($this->getUserIp());
         $threeDRequest->setEmail($this->getUserEmail());
-        $threeDRequest->setMode($this->getMode());
         $threeDRequest->setOrderId($this->getOrderId());
         $threeDRequest->setType($this->getType());
         $threeDRequest->setMd($this->getMd());

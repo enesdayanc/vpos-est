@@ -76,7 +76,6 @@ class VposTest extends TestCase
         $purchaseRequest = new PurchaseRequest();
 
         $purchaseRequest->setCard($this->card);
-        $purchaseRequest->setMode(RequestMode::P);
         $purchaseRequest->setOrderId($this->orderId);
         $purchaseRequest->setAmount($this->amount);
         $purchaseRequest->setCurrency($this->currency);
@@ -107,7 +106,6 @@ class VposTest extends TestCase
         $purchaseRequest = new PurchaseRequest();
 
         $purchaseRequest->setCard($this->card);
-        $purchaseRequest->setMode(RequestMode::P);
         $purchaseRequest->setOrderId($this->orderId);
         $purchaseRequest->setAmount(0);
         $purchaseRequest->setCurrency($this->currency);
@@ -125,7 +123,6 @@ class VposTest extends TestCase
         $authorizeRequest = new AuthorizeRequest();
 
         $authorizeRequest->setCard($this->card);
-        $authorizeRequest->setMode(RequestMode::P);
         $authorizeRequest->setOrderId($this->orderId);
         $authorizeRequest->setAmount($this->amount);
         $authorizeRequest->setCurrency($this->currency);
@@ -152,7 +149,6 @@ class VposTest extends TestCase
         $authorizeRequest = new AuthorizeRequest();
 
         $authorizeRequest->setCard($this->card);
-        $authorizeRequest->setMode(RequestMode::P);
         $authorizeRequest->setOrderId(1);
         $authorizeRequest->setAmount($this->amount);
         $authorizeRequest->setCurrency($this->currency);
@@ -181,7 +177,6 @@ class VposTest extends TestCase
         $captureRequest->setOrderId($params['orderId']);
         $captureRequest->setAmount($params['amount']);
         $captureRequest->setCurrency($this->currency);
-        $captureRequest->setMode(RequestMode::P);
 
         $response = $this->vPos->capture($captureRequest);
 
@@ -197,7 +192,6 @@ class VposTest extends TestCase
         $captureRequest->setOrderId(1);
         $captureRequest->setAmount($this->amount);
         $captureRequest->setCurrency($this->currency);
-        $captureRequest->setMode(RequestMode::P);
 
         $response = $this->vPos->capture($captureRequest);
 
@@ -215,7 +209,6 @@ class VposTest extends TestCase
     public function testRefund($params)
     {
         $refundRequest = new RefundRequest();
-        $refundRequest->setMode(RequestMode::P);
         $refundRequest->setCurrency($this->currency);
         $refundRequest->setAmount($params['amount'] / 2);
         $refundRequest->setOrderId($params['orderId']);
@@ -237,7 +230,6 @@ class VposTest extends TestCase
     public function testRefundFail($params)
     {
         $refundRequest = new RefundRequest();
-        $refundRequest->setMode(RequestMode::P);
         $refundRequest->setCurrency($this->currency);
         $refundRequest->setAmount($params['amount'] + 10);
         $refundRequest->setOrderId($params['orderId']);
@@ -258,7 +250,6 @@ class VposTest extends TestCase
     {
         $voidRequest = new VoidRequest();
         $voidRequest->setOrderId($params['orderId']);
-        $voidRequest->setMode(RequestMode::P);
 
         $response = $this->vPos->void($voidRequest);
 
@@ -272,7 +263,6 @@ class VposTest extends TestCase
     {
         $voidRequest = new VoidRequest();
         $voidRequest->setOrderId(1);
-        $voidRequest->setMode(RequestMode::P);
 
         $response = $this->vPos->void($voidRequest);
 
@@ -287,7 +277,6 @@ class VposTest extends TestCase
         $purchaseRequest = new PurchaseRequest();
 
         $purchaseRequest->setCard($this->card);
-        $purchaseRequest->setMode(RequestMode::P);
         $purchaseRequest->setOrderId($this->orderId);
         $purchaseRequest->setAmount($this->amount);
         $purchaseRequest->setCurrency($this->currency);
@@ -314,7 +303,6 @@ class VposTest extends TestCase
         $purchaseRequest = new PurchaseRequest();
 
         $purchaseRequest->setCard($this->card);
-        $purchaseRequest->setMode(RequestMode::P);
         $purchaseRequest->setOrderId($this->orderId);
         $purchaseRequest->setAmount(0);
         $purchaseRequest->setCurrency($this->currency);
@@ -332,7 +320,6 @@ class VposTest extends TestCase
         $authorizeRequest = new AuthorizeRequest();
 
         $authorizeRequest->setCard($this->card);
-        $authorizeRequest->setMode(RequestMode::P);
         $authorizeRequest->setOrderId($this->orderId);
         $authorizeRequest->setAmount($this->amount);
         $authorizeRequest->setCurrency($this->currency);
@@ -358,7 +345,6 @@ class VposTest extends TestCase
         $authorizeRequest = new AuthorizeRequest();
 
         $authorizeRequest->setCard($this->card);
-        $authorizeRequest->setMode(RequestMode::P);
         $authorizeRequest->setOrderId($this->orderId);
         $authorizeRequest->setAmount(0);
         $authorizeRequest->setCurrency($this->currency);

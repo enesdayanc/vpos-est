@@ -10,6 +10,7 @@ namespace PaymentGateway\VPosEst\Request;
 
 
 use PaymentGateway\ISO4217\Model\Currency;
+use PaymentGateway\VPosEst\Constant\RequestMode;
 use PaymentGateway\VPosEst\Constant\RequestType;
 use PaymentGateway\VPosEst\Helper\Helper;
 use PaymentGateway\VPosEst\Helper\Validator;
@@ -18,7 +19,6 @@ use PaymentGateway\VPosEst\Setting\Credential;
 class CaptureRequest implements RequestInterface
 {
     private $type;
-    private $mode;
     private $orderId;
     private $amount;
     /** @var  Currency $currency */
@@ -39,22 +39,6 @@ class CaptureRequest implements RequestInterface
     public function getType()
     {
         return $this->type;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMode()
-    {
-        return $this->mode;
-    }
-
-    /**
-     * @param mixed $mode
-     */
-    public function setMode($mode)
-    {
-        $this->mode = $mode;
     }
 
     /**
@@ -114,7 +98,7 @@ class CaptureRequest implements RequestInterface
             "Name" => $credential->getUsername(),
             "Password" => $credential->getPassword(),
             "ClientId" => $credential->getClientId(),
-            "Mode" => $this->getMode(),
+            "Mode" => RequestMode::P,
             "OrderId" => $this->getOrderId(),
             "Type" => $this->getType(),
             "Currency" => $this->getCurrency()->getNumeric(),
@@ -129,6 +113,5 @@ class CaptureRequest implements RequestInterface
         Validator::validateCurrency($this->getCurrency());
         Validator::validateAmount($this->getAmount());
         Validator::validateOrderId($this->getOrderId());
-        Validator::validateRequestMode($this->getMode());
     }
 }

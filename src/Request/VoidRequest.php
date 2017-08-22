@@ -9,6 +9,7 @@
 namespace PaymentGateway\VPosEst\Request;
 
 
+use PaymentGateway\VPosEst\Constant\RequestMode;
 use PaymentGateway\VPosEst\Constant\RequestType;
 use PaymentGateway\VPosEst\Helper\Helper;
 use PaymentGateway\VPosEst\Helper\Validator;
@@ -18,7 +19,6 @@ class VoidRequest implements RequestInterface
 {
     private $type;
     private $orderId;
-    private $mode;
 
 
     public function __construct()
@@ -50,22 +50,6 @@ class VoidRequest implements RequestInterface
         $this->orderId = $orderId;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getMode()
-    {
-        return $this->mode;
-    }
-
-    /**
-     * @param mixed $mode
-     */
-    public function setMode($mode)
-    {
-        $this->mode = $mode;
-    }
-
     public function toXmlString(Credential $credential)
     {
         $this->validate();
@@ -74,7 +58,7 @@ class VoidRequest implements RequestInterface
             "Name" => $credential->getUsername(),
             "Password" => $credential->getPassword(),
             "ClientId" => $credential->getClientId(),
-            "Mode" => $this->getMode(),
+            "Mode" => RequestMode::P,
             "OrderId" => $this->getOrderId(),
             "Type" => $this->getType(),
         );
@@ -84,7 +68,6 @@ class VoidRequest implements RequestInterface
 
     public function validate()
     {
-        Validator::validateRequestMode($this->getMode());
         Validator::validateOrderId($this->getOrderId());
     }
 }

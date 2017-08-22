@@ -10,6 +10,7 @@ namespace PaymentGateway\VPosEst\Request;
 
 use PaymentGateway\ISO4217\Model\Currency;
 use PaymentGateway\VPosEst\Constant\CardholderPresentCode;
+use PaymentGateway\VPosEst\Constant\RequestMode;
 use PaymentGateway\VPosEst\Helper\Helper;
 use PaymentGateway\VPosEst\Helper\Validator;
 use PaymentGateway\VPosEst\Setting\Credential;
@@ -19,7 +20,6 @@ class ThreeDRequest implements RequestInterface
 
     private $ip;
     private $email;
-    private $mode;
     private $orderId;
     private $type;
     private $md;
@@ -62,22 +62,6 @@ class ThreeDRequest implements RequestInterface
     public function setEmail($email)
     {
         $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMode()
-    {
-        return $this->mode;
-    }
-
-    /**
-     * @param mixed $mode
-     */
-    public function setMode($mode)
-    {
-        $this->mode = $mode;
     }
 
     /**
@@ -244,7 +228,6 @@ class ThreeDRequest implements RequestInterface
     {
         Validator::validateIp($this->getIp());
         Validator::validateEmail($this->getEmail());
-        Validator::validateRequestMode($this->getMode());
         Validator::validateOrderId($this->getOrderId());
         Validator::validateRequestType($this->getType());
         Validator::validateNotEmpty('MD', $this->getMd());
@@ -266,7 +249,7 @@ class ThreeDRequest implements RequestInterface
             "ClientId" => $credential->getClientId(),
             "IPAddress" => $this->getIp(),
             "Email" => $this->getEmail(),
-            "Mode" => $this->getMode(),
+            "Mode" => RequestMode::P,
             "OrderId" => $this->getOrderId(),
             "GroupId" => '',
             "TransId" => '',

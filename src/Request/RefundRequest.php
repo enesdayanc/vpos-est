@@ -9,6 +9,7 @@
 namespace PaymentGateway\VPosEst\Request;
 
 use PaymentGateway\ISO4217\Model\Currency;
+use PaymentGateway\VPosEst\Constant\RequestMode;
 use PaymentGateway\VPosEst\Constant\RequestType;
 use PaymentGateway\VPosEst\Helper\Helper;
 use PaymentGateway\VPosEst\Helper\Validator;
@@ -17,7 +18,6 @@ use PaymentGateway\VPosEst\Setting\Credential;
 class RefundRequest implements RequestInterface
 {
     private $type;
-    private $mode;
     private $orderId;
     private $amount;
     /** @var  Currency $currency */
@@ -35,22 +35,6 @@ class RefundRequest implements RequestInterface
     public function getType()
     {
         return $this->type;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMode()
-    {
-        return $this->mode;
-    }
-
-    /**
-     * @param mixed $mode
-     */
-    public function setMode($mode)
-    {
-        $this->mode = $mode;
     }
 
     /**
@@ -109,7 +93,7 @@ class RefundRequest implements RequestInterface
             "Name" => $credential->getUsername(),
             "Password" => $credential->getPassword(),
             "ClientId" => $credential->getClientId(),
-            "Mode" => $this->getMode(),
+            "Mode" => RequestMode::P,
             "OrderId" => $this->getOrderId(),
             "Type" => $this->getType(),
             "Currency" => $this->getCurrency()->getNumeric(),
@@ -121,7 +105,6 @@ class RefundRequest implements RequestInterface
 
     public function validate()
     {
-        Validator::validateRequestMode($this->getMode());
         Validator::validateCurrency($this->getCurrency());
         Validator::validateAmount($this->getAmount());
         Validator::validateOrderId($this->getOrderId());
