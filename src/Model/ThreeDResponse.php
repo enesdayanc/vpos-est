@@ -435,7 +435,7 @@ class ThreeDResponse
 
         $responseClass->setCode($this->getAuthCode());
         $responseClass->setTransactionReference($this->getTransId());
-        $responseClass->setIsSuccessful(true);
+        $responseClass->setSuccessful(true);
 
         return $responseClass;
     }
