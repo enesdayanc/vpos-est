@@ -8,6 +8,7 @@
 
 namespace PaymentGateway\VPosEst\Helper;
 
+use PaymentGateway\VPosEst\Constant\BankType;
 use PaymentGateway\VPosEst\Constant\Currency;
 use PaymentGateway\VPosEst\Constant\Language;
 use PaymentGateway\VPosEst\Constant\RequestMode;
@@ -34,6 +35,13 @@ class Validator
     {
         if (!in_array($value, Helper::getConstants(StoreType::class))) {
             throw new ValidationException('Invalid Store Type', 'INVALID_STORE_TYPE');
+        }
+    }
+
+    public static function validateBankType($value)
+    {
+        if (!in_array($value, Helper::getConstants(BankType::class))) {
+            throw new ValidationException('Invalid Bank Type', 'INVALID_BANK_TYPE');
         }
     }
 

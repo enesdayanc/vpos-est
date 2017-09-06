@@ -10,6 +10,14 @@ namespace PaymentGateway\VPosEst\Helper;
 
 
 use Exception;
+use PaymentGateway\VPosEst\Constant\BankType;
+use PaymentGateway\VPosEst\Exception\NotFoundException;
+use PaymentGateway\VPosEst\Setting\AkBank;
+use PaymentGateway\VPosEst\Setting\Finansbank;
+use PaymentGateway\VPosEst\Setting\Setting;
+use PaymentGateway\VPosEst\Setting\TurkEkonomiBankasi;
+use PaymentGateway\VPosEst\Setting\TurkiyeIsBankasi;
+use PaymentGateway\VPosEst\Setting\TurkiyeIsBankasiTest;
 use SimpleXMLElement;
 use PaymentGateway\VPosEst\Constant\Success;
 use PaymentGateway\VPosEst\Exception\ValidationException;
@@ -100,5 +108,45 @@ class Helper
     {
         return $amount;
         return (int)number_format($amount, 2, '', '');
+    }
+
+    /**
+     * @param $bankType
+     * @param $storeType
+     * @param bool $useTestCredential
+     * @return AkBank|Finansbank|TurkEkonomiBankasi|TurkiyeIsBankasi|TurkiyeIsBankasiTest
+     * @throws NotFoundException
+     */
+    public static function getSettingClassByBankTypeAndStoreType($bankType, $storeType, $useTestCredential = false)
+    {
+        Validator::validateBankType($bankType);
+        Validator::validateStoreType($storeType);
+
+        if ($useTestCredential) {
+            $setting = new TurkiyeIsBankasiTest($storeType);
+        } else {
+            switch ($bankType) {
+                case BankType::AKBANK:
+                    $setting = new AkBank();
+                    break;
+                case BankType::FINANSBANK:
+                    $setting = new Finansbank();
+                    break;
+                case BankType::TURK_EKONOMI_BANKASI:
+                    $setting = new TurkEkonomiBankasi();
+                    break;
+                case BankType::TURKIYE_IS_BANKASI:
+                    $setting = new TurkiyeIsBankasi();
+                    break;
+            }
+        }
+
+        if (!isset($setting) || !$setting instanceof Setting) {
+            $userMessage = $bankType . ' not found';
+            $internalMessage = 'BANK_TYPE_NOT_FOUND';
+            throw new NotFoundException($userMessage, $internalMessage);
+        }
+
+        return $setting;
     }
 }
