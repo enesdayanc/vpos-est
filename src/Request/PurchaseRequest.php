@@ -249,7 +249,7 @@ class PurchaseRequest implements RequestInterface
         $this->language = $language;
     }
 
-    public function toXmlString(Credential $credential)
+    public function toXmlString(Credential $credential, $maskCardData = false)
     {
         $this->validate();
 
@@ -268,9 +268,9 @@ class PurchaseRequest implements RequestInterface
             "UserId" => $this->getUserId(),
             "Extra" => $this->getExtra(),
             "Taksit" => $this->getInstallment(),
-            "Number" => $card->getCreditCardNumber(),
-            "Expires" => $card->getExpires(),
-            "Cvv2Val" => $card->getCvv(),
+            "Number" => $card->getCreditCardNumber($maskCardData),
+            "Expires" => $card->getExpires($maskCardData),
+            "Cvv2Val" => $card->getCvv($maskCardData),
             "Total" => Helper::amountParser($this->getAmount()),
             "Email" => $this->getEmail(),
             "IPAddress" => $this->getIp(),
