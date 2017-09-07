@@ -110,35 +110,34 @@ class Helper
         return (int)number_format($amount, 2, '', '');
     }
 
+
     /**
      * @param $bankType
      * @param $storeType
-     * @param bool $useTestCredential
-     * @return AkBank|Finansbank|TurkEkonomiBankasi|TurkiyeIsBankasi|TurkiyeIsBankasiTest
+     * @return Setting
      * @throws NotFoundException
      */
-    public static function getSettingClassByBankTypeAndStoreType($bankType, $storeType, $useTestCredential = false)
+    public static function getSettingClassByBankTypeAndStoreType($bankType, $storeType)
     {
         Validator::validateBankType($bankType);
         Validator::validateStoreType($storeType);
 
-        if ($useTestCredential) {
-            $setting = new TurkiyeIsBankasiTest($storeType);
-        } else {
-            switch ($bankType) {
-                case BankType::AKBANK:
-                    $setting = new AkBank();
-                    break;
-                case BankType::FINANSBANK:
-                    $setting = new Finansbank();
-                    break;
-                case BankType::TURK_EKONOMI_BANKASI:
-                    $setting = new TurkEkonomiBankasi();
-                    break;
-                case BankType::TURKIYE_IS_BANKASI:
-                    $setting = new TurkiyeIsBankasi();
-                    break;
-            }
+        switch ($bankType) {
+            case BankType::AKBANK:
+                $setting = new AkBank();
+                break;
+            case BankType::FINANSBANK:
+                $setting = new Finansbank();
+                break;
+            case BankType::TURK_EKONOMI_BANKASI:
+                $setting = new TurkEkonomiBankasi();
+                break;
+            case BankType::TURKIYE_IS_BANKASI:
+                $setting = new TurkiyeIsBankasi();
+                break;
+            case BankType::TURKIYE_IS_BANKASI_TEST:
+                $setting = new TurkiyeIsBankasiTest($storeType);
+                break;
         }
 
         if (!isset($setting) || !$setting instanceof Setting) {
