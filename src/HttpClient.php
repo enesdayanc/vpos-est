@@ -52,6 +52,6 @@ class HttpClient
             throw new CurlException('Connection Error', $exception->getMessage());
         }
 
-        return Helper::getResponseByXML($clientResponse->getBody()->getContents());
+        return Helper::getResponseByXML($clientResponse->getBody()->getContents(), $documentString);
     }
 }

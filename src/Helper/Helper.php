@@ -70,11 +70,12 @@ class Helper
         return base64_encode(pack('H*', sha1($threeDHashString)));
     }
 
-    public static function getResponseByXML($xml)
+    public static function getResponseByXML($xml, $requestRawData)
     {
         $response = new Response();
 
         $response->setRawData($xml);
+        $response->setRequestRawData($requestRawData);
 
         try {
             $data = new SimpleXMLElement($xml);
