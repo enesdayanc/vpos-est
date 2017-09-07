@@ -175,7 +175,7 @@ class Helper
         $threeDResponse->setHash(self::getValueFromArray($request, 'HASH'));
         $threeDResponse->setHashParams(self::getValueFromArray($request, 'HASHPARAMS'));
         $threeDResponse->setHashParamsVal(self::getValueFromArray($request, 'HASHPARAMSVAL'));
-        $threeDResponse->setTransId(self::getValueFromArray($request, 'TRANID'));
+        $threeDResponse->setTransId(self::getValueFromArray($request, 'TransId'));
         $threeDResponse->setUserIp(self::getValueFromArray($request, 'clientIp'));
         $threeDResponse->setAmount(self::getValueFromArray($request, 'amount'));
         $threeDResponse->setInstallment(self::getValueFromArray($request, 'taksit'));
