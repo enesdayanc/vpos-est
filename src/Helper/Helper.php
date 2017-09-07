@@ -10,8 +10,10 @@ namespace PaymentGateway\VPosEst\Helper;
 
 
 use Exception;
+use PaymentGateway\ISO4217\ISO4217;
 use PaymentGateway\VPosEst\Constant\BankType;
 use PaymentGateway\VPosEst\Exception\NotFoundException;
+use PaymentGateway\VPosEst\Model\ThreeDResponse;
 use PaymentGateway\VPosEst\Setting\AkBank;
 use PaymentGateway\VPosEst\Setting\Finansbank;
 use PaymentGateway\VPosEst\Setting\Setting;
@@ -152,5 +154,47 @@ class Helper
     public static function maskValue($value, $takeStart = 0, $takeStop = 0, $maskingCharacter = '*')
     {
         return substr($value, $takeStart, $takeStop) . str_repeat($maskingCharacter, strlen($value) - ($takeStop - $takeStart));
+    }
+
+    public static function getThreeDResponseFromRequest(array $request)
+    {
+        $threeDResponse = new ThreeDResponse();
+
+        $currencyCode = self::getValueFromArray($request, 'currency');
+
+        $ISO4217 = new ISO4217();
+
+        $threeDResponse->setCurrency($ISO4217->getByCode($currencyCode));
+        $threeDResponse->setClientId(self::getValueFromArray($request, 'clientid'));
+        $threeDResponse->setOrderId(self::getValueFromArray($request, 'oid'));
+        $threeDResponse->setMdStatus(self::getValueFromArray($request, 'mdStatus'));
+        $threeDResponse->setCavv(self::getValueFromArray($request, 'cavv'));
+        $threeDResponse->setEci(self::getValueFromArray($request, 'eci'));
+        $threeDResponse->setMd(self::getValueFromArray($request, 'md'));
+        $threeDResponse->setRnd(self::getValueFromArray($request, 'rnd'));
+        $threeDResponse->setHash(self::getValueFromArray($request, 'HASH'));
+        $threeDResponse->setHashParams(self::getValueFromArray($request, 'HASHPARAMS'));
+        $threeDResponse->setHashParamsVal(self::getValueFromArray($request, 'HASHPARAMSVAL'));
+        $threeDResponse->setTransId(self::getValueFromArray($request, 'TRANID'));
+        $threeDResponse->setUserIp(self::getValueFromArray($request, 'clientIp'));
+        $threeDResponse->setAmount(self::getValueFromArray($request, 'amount'));
+        $threeDResponse->setInstallment(self::getValueFromArray($request, 'taksit'));
+        $threeDResponse->setXid(self::getValueFromArray($request, 'xid'));
+        $threeDResponse->setProcReturnCode(self::getValueFromArray($request, 'ProcReturnCode'));
+        $threeDResponse->setAuthCode(self::getValueFromArray($request, 'AuthCode'));
+        $threeDResponse->setType(self::getValueFromArray($request, 'storetype'));
+        $threeDResponse->setResponse(self::getValueFromArray($request, 'Response'));
+        $threeDResponse->setUserEmail(self::getValueFromArray($request, 'email'));
+
+        return $threeDResponse;
+    }
+
+    public static function getValueFromArray(array $array, $key, $default = null)
+    {
+        if (array_key_exists($key, $array)) {
+            return $array[$key];
+        }
+
+        return $default;
     }
 }
