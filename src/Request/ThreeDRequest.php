@@ -287,9 +287,7 @@ class ThreeDRequest implements RequestInterface
                 "PostalCode" => '',
                 "Country" => '',
             ),
-            "Extra" => array(
-                "email" => $this->getEmail(),
-            ),
+            "Extra" => '',
         );
 
         return Helper::arrayToXmlString($elements);
