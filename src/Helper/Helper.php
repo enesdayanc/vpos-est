@@ -182,7 +182,7 @@ class Helper
         $threeDResponse->setXid(self::getValueFromArray($request, 'xid'));
         $threeDResponse->setProcReturnCode(self::getValueFromArray($request, 'ProcReturnCode'));
         $threeDResponse->setAuthCode(self::getValueFromArray($request, 'AuthCode'));
-        $threeDResponse->setType(self::getValueFromArray($request, 'storetype'));
+        $threeDResponse->setType(self::getValueFromArray($request, 'islemtipi'));
         $threeDResponse->setResponse(self::getValueFromArray($request, 'Response'));
         $threeDResponse->setUserEmail(self::getValueFromArray($request, 'email'));
 
