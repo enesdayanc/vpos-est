@@ -320,7 +320,8 @@ class PurchaseRequest implements RequestInterface
             'lang' => $this->getLanguage(),
             'hash' => $this->get3DHash($rnd, $setting),
             'amount' => Helper::amountParser($this->getAmount()),
-            'currency' => $this->getCurrency()->getNumeric()
+            'currency' => $this->getCurrency()->getNumeric(),
+            'email' => $this->getEmail(),
         );
 
         $redirectForm = new RedirectForm();
