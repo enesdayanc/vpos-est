@@ -19,6 +19,7 @@ use GuzzleHttp\Client;
 class HttpClient
 {
     private $setting;
+    private $timeout = 20;
 
     /**
      * HttpClient constructor.
@@ -44,6 +45,7 @@ class HttpClient
 
         try {
             $clientResponse = $client->post($url, [
+                'timeout' => $this->timeout,
                 'form_params' => [
                     'DATA' => $documentString,
                 ]
