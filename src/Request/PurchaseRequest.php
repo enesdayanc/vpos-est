@@ -249,7 +249,7 @@ class PurchaseRequest implements RequestInterface
         $this->language = $language;
     }
 
-    public function toXmlString(Credential $credential, $maskCardData = false)
+    public function toXmlString(Credential $credential, bool $maskCardData = false)
     {
         $this->validate();
 
