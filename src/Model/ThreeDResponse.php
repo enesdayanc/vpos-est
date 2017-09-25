@@ -392,10 +392,11 @@ class ThreeDResponse
 
     /**
      * @param Setting $setting
+     * @param $orderId
      * @return Response
      * @throws ValidationException
      */
-    public function getResponseClass(Setting $setting)
+    public function getResponseClass(Setting $setting, $orderId)
     {
         $validSignature = $this->isValidSignature($setting);
 
@@ -404,7 +405,9 @@ class ThreeDResponse
         $responseClass->setCode($this->getAuthCode());
         $responseClass->setTransactionReference($this->getTransId());
 
-        if ($validSignature) {
+        if ($this->getOrderId() != $orderId) {
+            $responseClass->setErrorMessage('Order id not match');
+        } elseif ($validSignature) {
 
             if (in_array($this->getMdStatus(), $this->allowedMdStatus)) {
                 if ($setting->getStoreType() == StoreType::THREE_D_PAY
