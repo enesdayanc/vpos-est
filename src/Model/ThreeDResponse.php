@@ -410,9 +410,7 @@ class ThreeDResponse
         } elseif ($validSignature) {
 
             if (in_array($this->getMdStatus(), $this->allowedMdStatus)) {
-                if ($setting->getStoreType() == StoreType::THREE_D_PAY
-                    && ($this->getProcReturnCode() === Success::PROC_RETURN_CODE || $this->getResponse() === Success::RESPONSE)
-                ) {
+                if ($setting->getStoreType() == StoreType::THREE_D_PAY) {
                     $responseClass = $this->getResponseClass3DPayModel($setting);
                 } elseif ($setting->getStoreType() == StoreType::THREE_D) {
                     $responseClass = $this->getResponseClassFor3DModel($setting);
@@ -438,7 +436,12 @@ class ThreeDResponse
 
         $responseClass->setCode($this->getAuthCode());
         $responseClass->setTransactionReference($this->getTransId());
-        $responseClass->setSuccessful(true);
+
+        if ($this->getProcReturnCode() === Success::PROC_RETURN_CODE || $this->getResponse() === Success::RESPONSE) {
+            $responseClass->setSuccessful(true);
+        } else {
+            $responseClass->setSuccessful(false);
+        }
 
         return $responseClass;
     }
