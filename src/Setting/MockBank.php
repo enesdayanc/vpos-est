@@ -31,31 +31,31 @@ class MockBank extends Setting
 
     public function getThreeDPostUrl()
     {
-        return "https://" . $this->getHost() . "/three-d-post";
+        return $this->getHost() . "/three-d-post";
     }
 
     public function getAuthorizeUrl()
     {
-        return "https://" . $this->getHost() . "/authorize";
+        return $this->getHost() . "/authorize";
     }
 
     public function getCaptureUrl()
     {
-        return "https://" . $this->getHost() . "/capture";
+        return $this->getHost() . "/capture";
     }
 
     public function getPurchaseUrl()
     {
-        return "https://" . $this->getHost() . "/purchase";
+        return $this->getHost() . "/purchase";
     }
 
     public function getRefundUrl()
     {
-        return "https://" . $this->getHost() . "/refund";
+        return $this->getHost() . "/refund";
     }
 
     public function getVoidUrl()
     {
-        return "https://" . $this->getHost() . "/void";
+        return $this->getHost() . "/void";
     }
 }
