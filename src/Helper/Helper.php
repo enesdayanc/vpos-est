@@ -16,6 +16,7 @@ use PaymentGateway\VPosEst\Exception\NotFoundException;
 use PaymentGateway\VPosEst\Model\ThreeDResponse;
 use PaymentGateway\VPosEst\Setting\AkBank;
 use PaymentGateway\VPosEst\Setting\Finansbank;
+use PaymentGateway\VPosEst\Setting\MockBank;
 use PaymentGateway\VPosEst\Setting\Setting;
 use PaymentGateway\VPosEst\Setting\TurkEkonomiBankasi;
 use PaymentGateway\VPosEst\Setting\TurkiyeIsBankasi;
@@ -140,6 +141,9 @@ class Helper
                 break;
             case BankType::TURKIYE_IS_BANKASI_TEST:
                 $setting = new TurkiyeIsBankasiTest($storeType);
+                break;
+            case BankType::MOCKBANK:
+                $setting = new MockBank();
                 break;
         }
 
