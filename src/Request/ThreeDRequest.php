@@ -260,7 +260,6 @@ class ThreeDRequest implements RequestInterface
             "Cvv2Val" => '',
             "Total" => Helper::amountParser($this->getAmount()),
             "Currency" => $this->getCurrency()->getNumeric(),
-            "Taksit" => $this->getInstallment(),
             "PayerTxnId" => $this->getXid(),
             "PayerSecurityLevel" => $this->getEci(),
             "PayerAuthenticationCode" => $this->getCavv(),
@@ -289,6 +288,10 @@ class ThreeDRequest implements RequestInterface
             ),
             "Extra" => '',
         );
+
+        if($this->getInstallment() > 1){
+            $elements["Taksit"] = $this->getInstallment();
+        }
 
         return Helper::arrayToXmlString($elements);
     }

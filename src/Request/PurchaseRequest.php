@@ -267,7 +267,6 @@ class PurchaseRequest implements RequestInterface
             "TransId" => $this->getTransId(),
             "UserId" => $this->getUserId(),
             "Extra" => $this->getExtra(),
-            "Taksit" => $this->getInstallment(),
             "Number" => $card->getCreditCardNumber($maskCardData),
             "Expires" => $card->getExpires($maskCardData),
             "Cvv2Val" => $card->getCvv($maskCardData),
@@ -275,6 +274,10 @@ class PurchaseRequest implements RequestInterface
             "Email" => $this->getEmail(),
             "IPAddress" => $this->getIp(),
         );
+
+        if ($this->getInstallment() > 1) {
+            $elements["Instalment"] = $this->getInstallment();
+        }
 
         return Helper::arrayToXmlString($elements);
     }
@@ -315,7 +318,6 @@ class PurchaseRequest implements RequestInterface
             'failUrl' => $setting->getThreeDFailUrl(),
             'rnd' => $rnd,
             'islemtipi' => $this->getType(),
-            'taksit' => $this->getInstallment(),
             'storetype' => $setting->getStoreType(),
             'lang' => $this->getLanguage(),
             'hash' => $this->get3DHash($rnd, $setting),
@@ -323,6 +325,10 @@ class PurchaseRequest implements RequestInterface
             'currency' => $this->getCurrency()->getNumeric(),
             'email' => $this->getEmail(),
         );
+
+        if ($this->getInstallment() > 1) {
+            $params['taksit'] = $this->getInstallment();
+        }
 
         $redirectForm = new RedirectForm();
         $redirectForm->setAction($setting->getThreeDPostUrl());
