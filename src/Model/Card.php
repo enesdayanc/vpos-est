@@ -65,18 +65,25 @@ class Card
     }
 
     /**
+     * @param bool $shortFormat
      * @param bool $maskCardData
      * @return mixed
      */
-    public function getExpiryYear(bool $maskCardData = false)
+    public function getExpiryYear(bool $shortFormat, bool $maskCardData = false)
     {
+        $prefix = '';
 
-        if ($maskCardData) {
-            return Helper::maskValue($this->expiryYear);
+        if (!$shortFormat) {
+            $prefix = substr(date("Y"), 0, 2);
         }
 
+        $year = $prefix . $this->expiryYear;
 
-        return $this->expiryYear;
+        if ($maskCardData) {
+            return Helper::maskValue($year);
+        }
+
+        return $year;
     }
 
     /**
@@ -143,14 +150,14 @@ class Card
 
     public function getExpires(bool $maskCardData = false)
     {
-        return $this->getExpiryYear($maskCardData) . $this->getExpiryMonth($maskCardData);
+        return $this->getExpiryMonth($maskCardData) . '/' . $this->getExpiryYear(false, $maskCardData);
     }
 
     public function validate()
     {
         Validator::validateCardNumber($this->getCreditCardNumber());
         Validator::validateExpiryMonth($this->getExpiryMonth());
-        Validator::validateExpiryYear($this->getExpiryYear());
+        Validator::validateExpiryYear($this->getExpiryYear(true));
         Validator::validateCvv($this->getCvv());
     }
 }

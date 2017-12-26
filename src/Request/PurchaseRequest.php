@@ -307,7 +307,7 @@ class PurchaseRequest implements RequestInterface
         $params = array(
             'pan' => $card->getCreditCardNumber(),
             'cv2' => $card->getCvv(),
-            'Ecom_Payment_Card_ExpDate_Year' => $card->getExpiryYear(),
+            'Ecom_Payment_Card_ExpDate_Year' => $card->getExpiryYear(true),
             'Ecom_Payment_Card_ExpDate_Month' => $card->getExpiryMonth(),
             'clientid' => $credential->getClientId(),
             'oid' => $this->getOrderId(),
