@@ -289,8 +289,10 @@ class ThreeDRequest implements RequestInterface
             "Extra" => '',
         );
 
-        if($this->getInstallment() > 1){
+        if ($this->getInstallment() > 1) {
             $elements["Taksit"] = $this->getInstallment();
+        } else {
+            $elements["Taksit"] = "";
         }
 
         return Helper::arrayToXmlString($elements);

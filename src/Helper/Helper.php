@@ -61,9 +61,26 @@ class Helper
         return $oClass->getConstants();
     }
 
-    public static function get3DHashString($clientId, $orderId, $amount, $threeDSuccessUrl, $threeDFailUrl, $type, $installment, $rnd, $storeKey)
-    {
-        return $clientId . $orderId . $amount . $threeDSuccessUrl . $threeDFailUrl . $type . $installment . $rnd . $storeKey;
+    public static function get3DHashString(
+        $clientId,
+        $orderId,
+        $amount,
+        $threeDSuccessUrl,
+        $threeDFailUrl,
+        $type,
+        $installment,
+        $rnd,
+        $storeKey
+    ) {
+        $hashString = $clientId . $orderId . $amount . $threeDSuccessUrl . $threeDFailUrl . $type;
+
+        if ($installment > 1) {
+            $hashString .= $installment;
+        }
+
+        $hashString .= $rnd . $storeKey;
+
+        return $hashString;
     }
 
     public static function get3DCryptedHash($threeDHashString)

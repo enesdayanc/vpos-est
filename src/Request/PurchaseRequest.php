@@ -328,6 +328,8 @@ class PurchaseRequest implements RequestInterface
 
         if ($this->getInstallment() > 1) {
             $params['taksit'] = $this->getInstallment();
+        } else {
+            $params['taksit'] = "";
         }
 
         $redirectForm = new RedirectForm();
