@@ -1,3 +1,4 @@
+sudo: false
 language: php
 php:
   - 7.0
@@ -15,8 +16,26 @@ before_script:
   - composer self-update
   - composer require --dev php-coveralls/php-coveralls
   - composer install --dev
+  - export PHPCS_DIR=/tmp/phpcs;
+  - export PHPCOMPAT_DIR=/tmp/PHPCompatibility;
+  # Install PHP CodeSniffer.
+  - git clone -b master --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR;
+  # Install PHP Compatibility Standard.
+  - git clone -b master --depth 1 https://github.com/wimg/PHPCompatibility.git $PHPCOMPAT_DIR;
+  # Set install path for PHP Compatibility Standard.
+  # @link https://github.com/squizlabs/PHP_CodeSniffer/wiki/Configuration-Options#setting-the-installed-standard-paths
+  - $PHPCS_DIR/bin/phpcs --config-set installed_paths $PHPCOMPAT_DIR;
+  # After CodeSniffer install you should refresh your path.
+  - phpenv rehash;
 
 script:
+  # Search for PHP syntax errors.
+  - find -L . -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
+  # Run PHPCS.
+  # If the custom ruleset is named `.phpcs.xml`, `phpcs.xml`, `.phpcs.xml.dist` or `phpcs.xml.dist`
+  # and, like the travis script, is in the root of the project, you can leave
+  # out the `--standard=` part of the command.
+  - $PHPCS_DIR/bin/phpcs . --standard=./custom-ruleset.xml;
   - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_script:
