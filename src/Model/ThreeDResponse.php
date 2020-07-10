@@ -21,6 +21,47 @@ use PaymentGateway\VPosEst\Setting\Setting;
 
 class ThreeDResponse
 {
+
+    private $clientId;
+
+    private $orderId;
+
+    private $authCode;
+
+    private $procReturnCode;
+
+    private $response;
+
+    private $mdStatus;
+
+    private $cavv;
+
+    private $eci;
+
+    private $md;
+
+    private $rnd;
+
+    private $hash;
+
+    private $hashParams;
+
+    private $hashParamsVal;
+
+    private $transId;
+
+    private $type;
+
+    private $userIp;
+
+    private $userEmail;
+
+    private $amount;
+
+    private $installment;
+
+    private $xid;
+
     private $allowedMdStatus = array(
         MdStatus::ONE,
         MdStatus::TWO,
@@ -28,26 +69,6 @@ class ThreeDResponse
         MdStatus::FOUR,
     );
 
-    private $clientId;
-    private $orderId;
-    private $authCode;
-    private $procReturnCode;
-    private $response;
-    private $mdStatus;
-    private $cavv;
-    private $eci;
-    private $md;
-    private $rnd;
-    private $hash;
-    private $hashParams;
-    private $hashParamsVal;
-    private $transId;
-    private $type;
-    private $userIp;
-    private $userEmail;
-    private $amount;
-    private $installment;
-    private $xid;
     /** @var  Currency */
     private $currency;
 

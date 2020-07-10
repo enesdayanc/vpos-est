@@ -18,6 +18,13 @@ abstract class BaseException extends Exception
 
     private $internalMessage;
 
+    /**
+     * BaseException constructor.
+     * @param $userMessage
+     * @param $internalMessage
+     * @param int            $code
+     * @param Throwable|null $previous
+     */
     public function __construct($userMessage, $internalMessage, $code = 0, Throwable $previous = null)
     {
         parent::__construct($userMessage, $code, $previous);
