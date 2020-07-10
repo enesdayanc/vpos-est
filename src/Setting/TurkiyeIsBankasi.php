@@ -10,6 +10,7 @@ namespace PaymentGateway\VPosEst\Setting;
 
 class TurkiyeIsBankasi extends Setting
 {
+
     private $host = "spos.isbank.com.tr";
 
     public function getThreeDPostUrl()

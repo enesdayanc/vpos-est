@@ -17,9 +17,13 @@ use PaymentGateway\VPosEst\Setting\Credential;
 
 class CaptureRequest implements RequestInterface
 {
+
     private $type;
+
     private $orderId;
+
     private $amount;
+
     /** @var  Currency $currency */
     private $currency;
 

@@ -10,16 +10,27 @@ namespace PaymentGateway\VPosEst\Response;
 
 class Response
 {
+
     private $successful = false;
+
     private $code;
+
     private $errorCode;
+
     private $errorMessage;
+
     private $transactionReference;
+
     private $isRedirect = false;
+
     private $redirectUrl;
+
     private $redirectMethod;
+
     private $redirectData;
+
     private $rawData;
+
     private $requestRawData;
 
     /**

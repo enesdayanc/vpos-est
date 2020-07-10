@@ -22,6 +22,7 @@ use PaymentGateway\VPosEst\Setting\Setting;
 
 class VPos
 {
+
     /** @var  Setting $setting */
     private $setting;
 

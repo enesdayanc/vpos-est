@@ -17,18 +17,30 @@ use PaymentGateway\VPosEst\Setting\Credential;
 
 class ThreeDRequest implements RequestInterface
 {
+
     private $ip;
+
     private $email;
+
     private $orderId;
+
     private $type;
+
     private $md;
+
     private $amount;
+
     /** @var  Currency $currency */
     private $currency;
+
     private $installment;
+
     private $xid;
+
     private $eci;
+
     private $cavv;
+
     private $language;
 
     /**

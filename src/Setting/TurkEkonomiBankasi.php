@@ -10,6 +10,7 @@ namespace PaymentGateway\VPosEst\Setting;
 
 class TurkEkonomiBankasi extends Setting
 {
+
     private $host = "sanalpos.teb.com.tr";
 
     public function getThreeDPostUrl()

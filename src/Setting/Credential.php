@@ -12,9 +12,13 @@ use PaymentGateway\VPosEst\Helper\Validator;
 
 class Credential
 {
+
     private $username;
+
     private $password;
+
     private $clientId;
+
     private $storeKey;
 
     /**

@@ -13,7 +13,9 @@ use Throwable;
 
 abstract class BaseException extends Exception
 {
+
     private $userMessage;
+
     private $internalMessage;
 
     public function __construct($userMessage, $internalMessage, $code = 0, Throwable $previous = null)

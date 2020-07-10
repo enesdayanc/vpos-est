@@ -17,7 +17,9 @@ use GuzzleHttp\Client;
 
 class HttpClient
 {
+
     private $setting;
+
     private $timeout = 20;
 
     /**
@@ -43,12 +45,14 @@ class HttpClient
         $client = new Client();
 
         try {
-            $clientResponse = $client->post($url, [
-                'timeout' => $this->timeout,
-                'form_params' => [
-                    'DATA' => $documentString,
+            $clientResponse = $client->post(
+                $url, [
+                    'timeout' => $this->timeout,
+                    'form_params' => [
+                        'DATA' => $documentString,
+                    ]
                 ]
-            ]);
+            );
         } catch (Exception $exception) {
             throw new CurlException('Connection Error', $exception->getMessage());
         }

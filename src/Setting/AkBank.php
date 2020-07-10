@@ -10,6 +10,7 @@ namespace PaymentGateway\VPosEst\Setting;
 
 class AkBank extends Setting
 {
+
     private $host = "www.sanalakpos.com";
 
     public function getThreeDPostUrl()

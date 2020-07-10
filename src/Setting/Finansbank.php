@@ -10,6 +10,7 @@ namespace PaymentGateway\VPosEst\Setting;
 
 class Finansbank extends Setting
 {
+
     private $host = "www.fbwebpos.com";
 
     public function getThreeDPostUrl()

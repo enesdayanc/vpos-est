@@ -16,7 +16,9 @@ use PaymentGateway\VPosEst\Setting\Credential;
 
 class VoidRequest implements RequestInterface
 {
+
     private $type;
+
     private $orderId;
 
 

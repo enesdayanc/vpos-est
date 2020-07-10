@@ -10,6 +10,7 @@ namespace PaymentGateway\VPosEst\Setting;
 
 class MockBank extends Setting
 {
+
     private $host;
 
     /**

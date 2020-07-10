@@ -12,10 +12,14 @@ use PaymentGateway\VPosEst\Helper\Validator;
 
 abstract class Setting
 {
+
     /** @var  Credential $credential */
     private $credential;
+
     private $threeDSuccessUrl;
+
     private $threeDFailUrl;
+
     private $storeType;
 
     /**
