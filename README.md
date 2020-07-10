@@ -1,6 +1,7 @@
 # Asseco NestPay PHP SDK
 
 [![Build Status](https://travis-ci.org/enesdayanc/vpos-est.svg?branch=master)](https://travis-ci.org/enesdayanc/vpos-est)
+[![Coverage Status](https://coveralls.io/repos/github/enesdayanc/vpos-est/badge.svg)](https://coveralls.io/github/enesdayanc/vpos-est)
 [![Latest Stable Version](https://poser.pugx.org/enesdayanc/vpos-est/v)](https://packagist.org/packages/enesdayanc/vpos-est) 
 [![Total Downloads](https://poser.pugx.org/enesdayanc/vpos-est/downloads)](https://packagist.org/packages/enesdayanc/vpos-est) 
 [![Latest Unstable Version](https://poser.pugx.org/enesdayanc/vpos-est/v/unstable)](https://packagist.org/packages/enesdayanc/vpos-est) 
