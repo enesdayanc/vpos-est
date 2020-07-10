@@ -198,7 +198,7 @@ class VposTest extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('CORE-2509', $response->getErrorCode());
+        $this->assertTrue(in_array($response->getErrorCode(), ['CORE-2509', 'CORE-2509'], true));
     }
 
 
