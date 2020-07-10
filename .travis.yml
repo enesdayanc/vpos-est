@@ -6,12 +6,6 @@ php:
   - 7.3
   - 7.4
 
-before_script:
-  - composer self-update
-  - composer install
-
-script: vendor/bin/phpunit
-
 matrix:
   allow_failures:
     - php: hhvm
@@ -20,3 +14,14 @@ matrix:
 cache:
   directories:
     - $HOME/.composer/cache/files
+
+before_script:
+  - composer self-update
+  - composer require --dev php-coveralls/php-coveralls
+  - composer install --dev
+
+script:
+  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+after_script:
+  - vendor/bin/php-coveralls -v
