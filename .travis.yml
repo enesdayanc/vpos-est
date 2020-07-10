@@ -32,7 +32,7 @@ script:
   # If the custom ruleset is named `.phpcs.xml`, `phpcs.xml`, `.phpcs.xml.dist` or `phpcs.xml.dist`
   # and, like the travis script, is in the root of the project, you can leave
   # out the `--standard=` part of the command.
-  - $PHPCS_DIR/bin/phpcs . --standard=./custom-ruleset.xml;
+  - $PHPCS_DIR/bin/phpcs .
   - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_script:
