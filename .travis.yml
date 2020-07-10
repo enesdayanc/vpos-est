@@ -11,7 +11,8 @@ cache:
     - $HOME/.composer/cache/files
 
 before_script:
-  - composer self-update
+  # Search for PHP syntax errors.
+  - if find . -name "*.php" ! -path "./vendor/*" -exec php -l {} \; | grep -v "No syntax errors detected"; then exit 1; fi
   - composer require --dev php-coveralls/php-coveralls
   - composer install --dev
   - export PHPCS_DIR=/tmp/phpcs;
@@ -27,8 +28,6 @@ before_script:
   - phpenv rehash;
 
 script:
-  # Search for PHP syntax errors.
-  - find -L . -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
   # Run PHPCS.
   # If the custom ruleset is named `.phpcs.xml`, `phpcs.xml`, `.phpcs.xml.dist` or `phpcs.xml.dist`
   # and, like the travis script, is in the root of the project, you can leave
