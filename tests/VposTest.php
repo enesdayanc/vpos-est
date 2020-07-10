@@ -42,11 +42,11 @@ class VposTest extends TestCase
 
     public function setUp()
     {
-        $settings = new TurkiyeIsBankasiTest(StoreType::THREE_D);
+        $settings = new TurkiyeIsBankasiTest(StoreType::THREE_D_PAY);
 
         $settings->setThreeDFailUrl('http://enesdayanc.com/fail');
         $settings->setThreeDSuccessUrl('http://enesdayanc.com/success');
-        $settings->setStoreType(StoreType::THREE_D);
+        $settings->setStoreType(StoreType::THREE_D_PAY);
 
         $this->vPos = new VPos($settings);
 
