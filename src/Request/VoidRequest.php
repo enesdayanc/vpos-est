@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Request;
 
-
 use PaymentGateway\VPosEst\Constant\RequestMode;
 use PaymentGateway\VPosEst\Constant\RequestType;
 use PaymentGateway\VPosEst\Helper\Helper;
@@ -17,7 +16,9 @@ use PaymentGateway\VPosEst\Setting\Credential;
 
 class VoidRequest implements RequestInterface
 {
+
     private $type;
+
     private $orderId;
 
 

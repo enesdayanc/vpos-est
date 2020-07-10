@@ -17,9 +17,13 @@ use PaymentGateway\VPosEst\Setting\Credential;
 
 class RefundRequest implements RequestInterface
 {
+
     private $type;
+
     private $orderId;
+
     private $amount;
+
     /** @var  Currency $currency */
     private $currency;
 

@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Helper;
 
-
 use Exception;
 use PaymentGateway\ISO4217\ISO4217;
 use PaymentGateway\VPosEst\Constant\BankType;
@@ -57,7 +56,7 @@ class Helper
 
     public static function getConstants($class)
     {
-        $oClass = new ReflectionClass ($class);
+        $oClass = new ReflectionClass($class);
         return $oClass->getConstants();
     }
 
@@ -95,7 +94,7 @@ class Helper
         $response->setRawData($xml);
         $response->setRequestRawData($requestRawData);
 
-        $data = @simplexml_load_string($xml);
+        $data = simplexml_load_string($xml);
 
         if (empty($data)) {
             throw new ValidationException('Invalid Xml Response', 'INVALID_XML_RESPONSE');

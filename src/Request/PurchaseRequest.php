@@ -22,20 +22,33 @@ use PaymentGateway\VPosEst\Setting\Setting;
 
 class PurchaseRequest implements RequestInterface
 {
+
     protected $type;
+
     private $orderId;
+
     /** @var  Currency $currency */
     private $currency;
+
     private $groupId;
+
     private $transId;
+
     private $userId;
+
     private $extra;
+
     private $installment;
+
     private $amount;
+
     /** @var  Card $card */
     private $card;
+
     private $email;
+
     private $ip;
+
     private $language;
 
 

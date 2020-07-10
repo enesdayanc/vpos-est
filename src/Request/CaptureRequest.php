@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Request;
 
-
 use PaymentGateway\ISO4217\Model\Currency;
 use PaymentGateway\VPosEst\Constant\RequestMode;
 use PaymentGateway\VPosEst\Constant\RequestType;
@@ -18,9 +17,13 @@ use PaymentGateway\VPosEst\Setting\Credential;
 
 class CaptureRequest implements RequestInterface
 {
+
     private $type;
+
     private $orderId;
+
     private $amount;
+
     /** @var  Currency $currency */
     private $currency;
 

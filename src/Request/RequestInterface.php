@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Request;
 
-
 use PaymentGateway\VPosEst\Setting\Credential;
 
 interface RequestInterface

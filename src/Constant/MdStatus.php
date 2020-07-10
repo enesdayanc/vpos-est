@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Constant;
 
-
 class MdStatus
 {
     const ZERO = 0; // Risk Owner: Merchant

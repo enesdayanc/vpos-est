@@ -10,5 +10,4 @@ namespace PaymentGateway\VPosEst\Exception;
 
 class NotFoundException extends BaseException
 {
-
 }

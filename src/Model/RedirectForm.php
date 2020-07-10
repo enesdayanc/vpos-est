@@ -8,11 +8,13 @@
 
 namespace PaymentGateway\VPosEst\Model;
 
-
 class RedirectForm
 {
+
     private $action;
+
     private $method;
+
     private $parameters;
 
     /**

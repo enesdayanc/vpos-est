@@ -74,6 +74,7 @@ class Validator
                     $digit -= 9;
                 }
             }
+
             $total += $digit;
         }
 

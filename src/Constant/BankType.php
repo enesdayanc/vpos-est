@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Constant;
 
-
 class BankType
 {
     const AKBANK = 'AKBANK';

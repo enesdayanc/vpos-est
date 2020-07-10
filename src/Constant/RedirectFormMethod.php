@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Constant;
 
-
 class RedirectFormMethod
 {
     const GET = 'GET';

@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Model;
 
-
 use PaymentGateway\ISO4217\Model\Currency;
 use PaymentGateway\VPosEst\Constant\MdStatus;
 use PaymentGateway\VPosEst\Constant\StoreType;
@@ -22,6 +21,47 @@ use PaymentGateway\VPosEst\Setting\Setting;
 
 class ThreeDResponse
 {
+
+    private $clientId;
+
+    private $orderId;
+
+    private $authCode;
+
+    private $procReturnCode;
+
+    private $response;
+
+    private $mdStatus;
+
+    private $cavv;
+
+    private $eci;
+
+    private $md;
+
+    private $rnd;
+
+    private $hash;
+
+    private $hashParams;
+
+    private $hashParamsVal;
+
+    private $transId;
+
+    private $type;
+
+    private $userIp;
+
+    private $userEmail;
+
+    private $amount;
+
+    private $installment;
+
+    private $xid;
+
     private $allowedMdStatus = array(
         MdStatus::ONE,
         MdStatus::TWO,
@@ -29,26 +69,6 @@ class ThreeDResponse
         MdStatus::FOUR,
     );
 
-    private $clientId;
-    private $orderId;
-    private $authCode;
-    private $procReturnCode;
-    private $response;
-    private $mdStatus;
-    private $cavv;
-    private $eci;
-    private $md;
-    private $rnd;
-    private $hash;
-    private $hashParams;
-    private $hashParamsVal;
-    private $transId;
-    private $type;
-    private $userIp;
-    private $userEmail;
-    private $amount;
-    private $installment;
-    private $xid;
     /** @var  Currency */
     private $currency;
 
@@ -408,7 +428,6 @@ class ThreeDResponse
         if ($this->getOrderId() != $orderId) {
             $responseClass->setErrorMessage('Order id not match');
         } elseif ($validSignature) {
-
             if (in_array($this->getMdStatus(), $this->allowedMdStatus)) {
                 if ($setting->getStoreType() == StoreType::THREE_D_PAY) {
                     $responseClass = $this->getResponseClass3DPayModel($setting);
