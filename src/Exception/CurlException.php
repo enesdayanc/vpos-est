@@ -8,8 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Exception;
 
-
 class CurlException extends BaseException
 {
-
 }

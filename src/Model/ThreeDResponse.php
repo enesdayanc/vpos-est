@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Model;
 
-
 use PaymentGateway\ISO4217\Model\Currency;
 use PaymentGateway\VPosEst\Constant\MdStatus;
 use PaymentGateway\VPosEst\Constant\StoreType;
@@ -408,7 +407,6 @@ class ThreeDResponse
         if ($this->getOrderId() != $orderId) {
             $responseClass->setErrorMessage('Order id not match');
         } elseif ($validSignature) {
-
             if (in_array($this->getMdStatus(), $this->allowedMdStatus)) {
                 if ($setting->getStoreType() == StoreType::THREE_D_PAY) {
                     $responseClass = $this->getResponseClass3DPayModel($setting);

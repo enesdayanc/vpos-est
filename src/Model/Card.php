@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Model;
 
-
 use PaymentGateway\VPosEst\Helper\Helper;
 use PaymentGateway\VPosEst\Helper\Validator;
 
@@ -112,7 +111,6 @@ class Card
      */
     public function setCvv($cvv)
     {
-
         $this->cvv = $cvv;
     }
 

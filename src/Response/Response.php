@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Response;
 
-
 class Response
 {
     private $successful = false;

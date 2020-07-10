@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Setting;
 
-
 use PaymentGateway\VPosEst\Constant\StoreType;
 use PaymentGateway\VPosEst\Exception\NotFoundException;
 

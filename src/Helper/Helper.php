@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Helper;
 
-
 use Exception;
 use PaymentGateway\ISO4217\ISO4217;
 use PaymentGateway\VPosEst\Constant\BankType;
@@ -57,7 +56,7 @@ class Helper
 
     public static function getConstants($class)
     {
-        $oClass = new ReflectionClass ($class);
+        $oClass = new ReflectionClass($class);
         return $oClass->getConstants();
     }
 

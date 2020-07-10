@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Constant;
 
-
 class CardholderPresentCode
 {
     const THREE_D = 13;

@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Setting;
 
-
 use PaymentGateway\VPosEst\Helper\Validator;
 
 class Credential

@@ -70,7 +70,6 @@ class VPos
 
     public function authorize3D(AuthorizeRequest $authorizeRequest)
     {
-
         $redirectForm = $authorizeRequest->get3DRedirectForm($this->setting);
 
         $response = new Response();

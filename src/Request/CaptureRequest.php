@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Request;
 
-
 use PaymentGateway\ISO4217\Model\Currency;
 use PaymentGateway\VPosEst\Constant\RequestMode;
 use PaymentGateway\VPosEst\Constant\RequestType;

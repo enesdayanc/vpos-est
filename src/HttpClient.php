@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst;
 
-
 use PaymentGateway\VPosEst\Exception\CurlException;
 use PaymentGateway\VPosEst\Helper\Helper;
 use PaymentGateway\VPosEst\Request\RequestInterface;

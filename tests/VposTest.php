@@ -68,7 +68,6 @@ class VposTest extends TestCase
         $this->orderId = md5(microtime() . rand());
         $this->userId = md5(microtime() . rand());
         $this->installment = rand(1, 12);
-
     }
 
     public function testPurchase()
@@ -355,7 +354,5 @@ class VposTest extends TestCase
         $authorizeRequest->setEmail('enes.dayanc@modanisa.com.tr');
 
         $this->vPos->authorize3D($authorizeRequest);
-
     }
-
 }

@@ -17,7 +17,6 @@ use PaymentGateway\VPosEst\Setting\Credential;
 
 class ThreeDRequest implements RequestInterface
 {
-
     private $ip;
     private $email;
     private $orderId;

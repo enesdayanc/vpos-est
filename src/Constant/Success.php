@@ -8,7 +8,6 @@
 
 namespace PaymentGateway\VPosEst\Constant;
 
-
 class Success
 {
     const PROC_RETURN_CODE = '00';
