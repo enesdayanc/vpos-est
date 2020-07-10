@@ -89,6 +89,7 @@ class VposTest extends TestCase
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
 
         return array(
